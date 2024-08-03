@@ -1,0 +1,24 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*", "./app/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "next.config.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../../phlearn/app/comps/cn.ts",
+    "../../../phlearn/app/comps/TextH.tsx",
+    "../../../phlearn/app/comps/TextP.tsx"
+  ],
+  "exclude": ["node_modules"]
+}
