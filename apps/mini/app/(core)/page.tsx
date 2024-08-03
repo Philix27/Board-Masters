@@ -1,5 +1,5 @@
 import React from "react";
-import GiftPage from "./gift";
+import GiftPage from "./home";
 
 export default function Page() {
   return <GiftPage />;

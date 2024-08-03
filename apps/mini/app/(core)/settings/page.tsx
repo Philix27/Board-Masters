@@ -5,7 +5,7 @@ import { EmailGiftCards } from "./CardsEmail";
 import { PhoneGiftCards } from "./CardsPhone";
 import { Navbar, ToggleSwitch } from "../_comps";
 import { IoAdd } from "react-icons/io5";
-import { CreateGiftCard } from "../gift/create";
+import { CreateGiftCard } from "../home/create";
 
 export default function RedeemPage() {
   const [isEmail, setIsEmail] = useState(true);

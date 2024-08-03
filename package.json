@@ -7,7 +7,13 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:mini": "turbo run dev --filter=mini",
+    "dev:frontend": "turbo run dev --filter=frontend",
+    "dev:ws": "turbo run dev --filter=ws",
+    "dev:backend": "turbo run dev --filter=backend",
+    "build:mini": "turbo run build --filter=mini",
+    "build:frontend": "turbo run build --filter=frontend"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
@@ -32,7 +38,6 @@
       "pre-commit": "lint-staged"
     }
   },
- 
   "packageManager": "pnpm@8.15.6",
 
   "lint-staged": {
