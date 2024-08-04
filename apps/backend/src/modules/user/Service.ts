@@ -1,18 +1,19 @@
 import { PrismaClient } from '@prisma/client';
-import {} from '@repo/rpc';
+import { IUser } from '@repo/rpc';
 
 export class UserService implements IUser {
   constructor(private readonly repo: PrismaClient) {}
 
-  async createUser() {
-    const res = await this.repo.user.create({
-      data: {
-        name: '',
-      },
-    });
+//   async createUser() {
+//     const res = await this.repo.user.create({
+//       data: {
+//         name: '',
+//       },
+//     });
 
-    return res;
+//     return res;
   }
 
-  async updateUser() {}
+   async update() {}
+ async create() {}
 }

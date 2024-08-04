@@ -27,7 +27,7 @@ export function HomePage() {
 const dashboardItems: { title: string; subTitle: string; link: string; color: string }[] = [
   {
     title: 'Multiplayer',
-    link: '/2',
+    link: '/board',
     subTitle: 'Stake to play with others',
     color: 'bg-red-500',
   },
@@ -39,38 +39,32 @@ const dashboardItems: { title: string; subTitle: string; link: string; color: st
   },
   {
     title: 'Bot',
-    link: '/2',
+    link: '/bot',
     subTitle: 'Play with an ai',
     color: 'bg-teal-500',
   },
   {
     title: 'Play Friend',
-    link: '/2',
+    link: '/board',
     subTitle: 'Invite a friend to play with',
     color: 'bg-orange-500',
   },
   {
     title: 'Puzzle',
-    link: '/2',
+    link: '/puzzle',
     subTitle: 'Take exercies and purples',
     color: 'bg-pink-500',
   },
   {
     title: 'Learn',
-    link: '/2',
+    link: '/learn',
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-purple-500',
   },
   {
     title: 'Watch',
-    link: '/2',
+    link: '/watch',
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-yellow-500',
-  },
-  {
-    title: 'Rules',
-    link: '/2',
-    subTitle: 'Learn chess with a simple walkthrough courses',
-    color: 'bg-slate-500',
   },
 ];

@@ -8,13 +8,13 @@ router.get(
   '/user/',
   validateRequest({
     params: z.object({
-      urlParameter: z.string(),
+      urlParameter: z.string().optional(),
     }),
     body: z.object({
-      bodyKey: z.number(),
+      bodyKey: z.number().optional(),
     }),
     query: z.object({
-      queryKey: z.string().length(64),
+      queryKey: z.string().length(64).optional(),
     }),
   }),
   async (req, res: Response) => {
@@ -26,13 +26,13 @@ router.post(
   '/user/',
   validateRequest({
     params: z.object({
-      urlParameter: z.string(),
+      urlParameter: z.string().optional(),
     }),
     body: z.object({
-      bodyKey: z.number(),
+      bodyKey: z.number().optional(),
     }),
     query: z.object({
-      queryKey: z.string().length(64),
+      queryKey: z.string().length(64).optional(),
     }),
   }),
   async (req, res: Response) => {
@@ -44,13 +44,13 @@ router.put(
   '/user/',
   validateRequest({
     params: z.object({
-      urlParameter: z.string(),
+      urlParameter: z.string().optional(),
     }),
     body: z.object({
-      bodyKey: z.number(),
+      bodyKey: z.number().optional(),
     }),
     query: z.object({
-      queryKey: z.string().length(64),
+      queryKey: z.string().length(64).optional(),
     }),
   }),
   async (req, res: Response) => {
