@@ -23,9 +23,9 @@ app.use(
   })
 );
 
-initPassport();
-app.use(passport.initialize());
-app.use(passport.authenticate('session'));
+// initPassport();
+// app.use(passport.initialize());
+// app.use(passport.authenticate('session'));
 
 const allowedHosts = process.env.ALLOWED_HOSTS ? process.env.ALLOWED_HOSTS.split(',') : [];
 

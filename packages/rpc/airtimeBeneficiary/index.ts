@@ -1,5 +1,6 @@
-import { request } from "../utils";
-import { z } from "zod";
+import axios from 'axios';
+import { request, requestUrl } from '../utils';
+import { z } from 'zod';
 
 //* Input Schema
 const schema = {
@@ -28,33 +29,26 @@ export type IAirtimeBeneficiaryCreate = {
 };
 //* Interface for Service and RPC
 export interface IAirtimeBeneficiary {
-  create(
-    props: z.infer<typeof schema.create>
-  ): Promise<IAirtimeBeneficiaryCreate>;
-  getAll(
-    props: z.infer<typeof schema.getAll>
-  ): Promise<IAirtimeBeneficiaryGetAll>;
-  delete(
-    props: z.infer<typeof schema.delete>
-  ): Promise<IAirtimeBeneficiaryDelete>;
+  create(props: z.infer<typeof schema.create>): Promise<IAirtimeBeneficiaryCreate>;
+  getAll(props: z.infer<typeof schema.getAll>): Promise<IAirtimeBeneficiaryGetAll>;
+  delete(props: z.infer<typeof schema.delete>): Promise<IAirtimeBeneficiaryDelete>;
 }
 
 //* RPC Schema
 export class AirtimeBeneficiaryRpc implements IAirtimeBeneficiary {
-  async create(
-    props: z.infer<typeof schema.create>
-  ): Promise<IAirtimeBeneficiaryCreate> {
-    return await request(props, "/beneficiary/create");
+  async create(props: z.infer<typeof schema.create>): Promise<IAirtimeBeneficiaryCreate> {
+    return await request(props, '/beneficiary/create');
   }
-  async getAll(
-    props: z.infer<typeof schema.getAll>
-  ): Promise<IAirtimeBeneficiaryGetAll> {
-    const result = await request(props, "/beneficiary/get_all");
+  async getAll(props: z.infer<typeof schema.getAll>): Promise<IAirtimeBeneficiaryGetAll> {
+    const result = await request(props, '/beneficiary/get_all');
     return result.data;
   }
-  async delete(
-    props: z.infer<typeof schema.delete>
-  ): Promise<IAirtimeBeneficiaryDelete> {
-    return await request(props, "/beneficiary/delete");
+  async delete(props: z.infer<typeof schema.delete>): Promise<IAirtimeBeneficiaryDelete> {
+    return await request(props, '/beneficiary/delete');
+  }
+
+  async sample(props: z.infer<typeof schema.delete>): Promise<IAirtimeBeneficiaryDelete> {
+    return await axios.post(requestUrl('/beneficiary/delete'), props);
+    // return await request(props, "/beneficiary/delete");
   }
 }

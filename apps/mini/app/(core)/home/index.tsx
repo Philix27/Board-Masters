@@ -61,4 +61,16 @@ const dashboardItems: { title: string; subTitle: string; link: string; color: st
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-purple-500',
   },
+  {
+    title: 'Watch',
+    link: '/2',
+    subTitle: 'Learn chess with a simple walkthrough courses',
+    color: 'bg-yellow-500',
+  },
+  {
+    title: 'Rules',
+    link: '/2',
+    subTitle: 'Learn chess with a simple walkthrough courses',
+    color: 'bg-slate-500',
+  },
 ];

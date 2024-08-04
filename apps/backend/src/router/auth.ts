@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { db } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 import { COOKIE_MAX_AGE } from '../consts';
+import { validateRequest } from 'zod-express-middleware';
 
 const router = Router();
 
@@ -119,5 +120,6 @@ router.get(
     failureRedirect: '/login/failed',
   })
 );
+router.get('/github/callback', validateRequest({}), async (req: Request, res: Response) => {});
 
 export default router;

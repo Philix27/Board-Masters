@@ -1,13 +1,13 @@
-"use client";
-import { AppStores } from "@/app/lib";
-import { TextP } from "@repo/ui";
-import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import React from "react";
-import { IconType } from "react-icons";
-import { IoPerson } from "react-icons/io5";
-import { useTheme } from "next-themes";
-import { MdMoney, MdNightlight, MdOutlineLightMode } from "react-icons/md";
+'use client';
+import { AppStores } from '@/app/lib';
+import { TextP } from '@repo/ui';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { IconType } from 'react-icons';
+import { IoPerson, IoSettings } from 'react-icons/io5';
+import { useTheme } from 'next-themes';
+import { MdNightlight, MdOutlineLightMode } from 'react-icons/md';
 
 export default function Drawer() {
   const store = AppStores.useSettingsStore();
@@ -19,40 +19,33 @@ export default function Drawer() {
       <motion.div
         initial={{ x: 0, opacity: 0.5, translateX: -20 }}
         animate={{ x: 0, opacity: 1, translateX: 0 }}
-        transition={{ ease: "easeInOut", duration: 0.3 }}
-        className={"w-[60%] bg-secondary rounded-r-2xl"}
+        transition={{ ease: 'easeInOut', duration: 0.3 }}
+        className={'w-[60%] bg-secondary rounded-r-2xl'}
       >
         <div className="px-4 mt-[50px]">
           <DrawerRow
-            title={"Profile"}
+            title={'Profile'}
             icon={IoPerson}
             onClick={() => {
-              router.push("/account");
+              router.push('/account');
             }}
           />
           <DrawerRow
-            title={"Beneficiary"}
-            icon={IoPerson}
+            title={'Settings'}
+            icon={IoSettings}
             onClick={() => {
-              router.push("/airtime-beneficiary");
+              router.push('/settings');
             }}
           />
           <DrawerRow
-            title={"Bank Accounts"}
-            icon={MdMoney}
-            onClick={() => {
-              router.push("/airtime-beneficiary");
-            }}
-          />
-          <DrawerRow
-            title={"Theme"}
-            icon={theme === "light" ? MdNightlight : MdOutlineLightMode}
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            title={'Theme'}
+            icon={theme === 'light' ? MdNightlight : MdOutlineLightMode}
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           />
         </div>
       </motion.div>
       <div
-        className={"w-[40%]"}
+        className={'w-[40%]'}
         onClick={() => {
           store.update({ drawerIsOpen: false });
         }}
@@ -61,19 +54,12 @@ export default function Drawer() {
   );
 }
 
-function DrawerRow(props: {
-  title: string;
-  icon?: IconType;
-  onClick?: VoidFunction;
-}) {
+function DrawerRow(props: { title: string; icon?: IconType; onClick?: VoidFunction }) {
   const Icon = props.icon!;
   return (
-    <div
-      className="w-full flex items-center py-2 border-b-[0.3px]"
-      onClick={props.onClick}
-    >
+    <div className="w-full flex items-center py-2 border-b-[0.3px]" onClick={props.onClick}>
       {props.icon && <Icon className="mr-4" />}
-      <TextP className={"font-bold"}>{props.title}</TextP>
+      <TextP className={'font-bold'}>{props.title}</TextP>
     </div>
   );
 }
