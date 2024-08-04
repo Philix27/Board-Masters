@@ -3,6 +3,7 @@ import { cn, TextH, TextP } from '@repo/ui';
 import React from 'react';
 import { Navbar } from '../_comps';
 import { MdScoreboard } from 'react-icons/md';
+import Link from 'next/link';
 
 export function HomePage() {
   return (
@@ -11,10 +12,12 @@ export function HomePage() {
 
       <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-6 py-4">
         {dashboardItems.map((val, i) => (
-          <div key={i} className={cn(`px-3 py-1 rounded-md`, val.color)}>
-            <TextH className={'tracking-wide'}>{val.title}</TextH>
-            <TextP className="mb-4">{val.subTitle}</TextP>
-          </div>
+          <Link href={val.link}>
+            <div key={i} className={cn(`px-3 py-1 rounded-md bg-`, val.color)}>
+              <TextH className={'tracking-wide text-white'}>{val.title}</TextH>
+              <TextP className="mb-4 text-white">{val.subTitle}</TextP>
+            </div>
+          </Link>
         ))}
       </div>
     </>
@@ -27,6 +30,12 @@ const dashboardItems: { title: string; subTitle: string; link: string; color: st
     link: '/2',
     subTitle: 'Stake to play with others',
     color: 'bg-red-500',
+  },
+  {
+    title: 'Score Board',
+    link: '/score',
+    subTitle: 'Play with an ai',
+    color: 'bg-cyan-600',
   },
   {
     title: 'Bot',
