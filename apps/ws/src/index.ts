@@ -3,7 +3,7 @@ import { GameManager } from './GameManager';
 import url from 'url';
 import { extractAuthUser } from './auth';
 
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ port: 8888 });
 
 const gameManager = new GameManager();
 
@@ -16,6 +16,10 @@ wss.on('connection', function connection(ws, req) {
   ws.on('close', () => {
     gameManager.removeUser(ws);
   });
+
+  ws.on("error", console.error)
+
+  ws.send("Hey bro.. We good")
 });
 
 console.log('done');

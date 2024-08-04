@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { celo, celoAlfajores } from "wagmi/chains";
 import { WagmiProvider, http } from "wagmi";
+import { RecoilRoot } from "recoil";
 
 export const SettingsContext = createContext<{
   isOpen: boolean;
@@ -40,18 +41,20 @@ const queryClient = new QueryClient();
 export function AppProviders(props: { children: ReactNode }) {
   const [isOpen, setOpen] = useState<boolean>(false);
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <SettingsContext.Provider value={{ isOpen, setOpen }}>
-        <WagmiProvider config={rainbowConfig}>
-          <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>
-              {props.children}
-              <Toaster className={"bg-primary"} />
-            </RainbowKitProvider>
-          </QueryClientProvider>
-        </WagmiProvider>
-        <Toaster className={"bg-primary"} />
-      </SettingsContext.Provider>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <SettingsContext.Provider value={{ isOpen, setOpen }}>
+          <WagmiProvider config={rainbowConfig}>
+            <QueryClientProvider client={queryClient}>
+              <RainbowKitProvider>
+                {props.children}
+                <Toaster className={'bg-primary'} />
+              </RainbowKitProvider>
+            </QueryClientProvider>
+          </WagmiProvider>
+          <Toaster className={'bg-primary'} />
+        </SettingsContext.Provider>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }

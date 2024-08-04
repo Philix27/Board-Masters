@@ -2,6 +2,7 @@
 import { TextH } from "@repo/ui";
 import React from "react";
 import { Navbar } from "../_comps";
+import { Game } from "./Game";
 
 export  function HomePage() {
 
@@ -9,7 +10,7 @@ export  function HomePage() {
     <>
       <Navbar title={"Home"}  />
       <div className="px-6 mb-10">
-        HomePage
+      <Game />
       </div>
     </>
   );
