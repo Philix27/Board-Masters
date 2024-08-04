@@ -1,13 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useSocket } from './hooks/useSocket';
+import { useState } from 'react';
 import { Chess } from 'chess.js';
-import { useParams } from 'react-router-dom';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@repo/store/useUser';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { movesAtom, userSelectedMoveIndexAtom } from '@repo/store/chessBoard';
 
 const GAME_TIME_MS = 10 * 60 * 1000;
 // const moveAudio = new Audio(MoveSound);

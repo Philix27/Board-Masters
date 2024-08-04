@@ -2,7 +2,6 @@
 import { TextP } from "@repo/ui";
 import React from "react";
 import { IconType } from "react-icons";
-import { ThemeToggle } from "./theme";
 import { IoArrowBack, IoMenu } from "react-icons/io5";
 import { AppStores } from "@/lib";
 import { useRouter } from "next/navigation";
@@ -39,12 +38,11 @@ export function Navbar(props: {
           />
         )}
 
-        {/* <IoIosCard className={"text-white text-2xl font-black"} /> */}
-        {!props.isBack && (
+        {/* {!props.isBack && (
           <h1 className={"text-primary text-md font-black tracking-wide"}>
             PR
           </h1>
-        )}
+        )} */}
       </div>
       <TextP v="p4" className="text-card-foreground my-0">
         {props.title}
