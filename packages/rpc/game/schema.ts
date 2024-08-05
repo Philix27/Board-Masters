@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const UserSchema = {
+export const GameSchema = {
   create: z.object({
     urlParameter: z.string(),
   }),
@@ -9,7 +9,7 @@ export const UserSchema = {
   }),
 };
 
-export type IUserReturnType = {
+export type IGameReturnType = {
   update: {
     msg: string;
   };

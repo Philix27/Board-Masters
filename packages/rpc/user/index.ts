@@ -1,36 +1,19 @@
-import { requestUrl } from '../utils';
+import { request } from '../utils';
 import { z } from 'zod';
-import { UserSchemaCreate, IUserReturnType, UserSchemaUpdate } from './schema';
-import axios from 'axios';
+import { UserSchema, IUserReturnType } from './schema';
 
 export interface IUser {
-  create(props: {
-    body: z.infer<typeof UserSchemaCreate.body>;
-    params: z.infer<typeof UserSchemaCreate.params>;
-    query: z.infer<typeof UserSchemaCreate.query>;
-  }): Promise<IUserReturnType['create']>;
+  create(props: z.infer<typeof UserSchema.create>): Promise<IUserReturnType['create']>;
 
-  update(props: {
-    body: z.infer<typeof UserSchemaUpdate.body>;
-    params: z.infer<typeof UserSchemaUpdate.params>;
-    query: z.infer<typeof UserSchemaUpdate.query>;
-  }): Promise<IUserReturnType['update']>;
+  update(props: z.infer<typeof UserSchema.update>): Promise<IUserReturnType['update']>;
 }
 
 export class UserRpc implements IUser {
-  async create(props: {
-    body: z.infer<typeof UserSchemaCreate.body>;
-    params: z.infer<typeof UserSchemaCreate.params>;
-    query: z.infer<typeof UserSchemaCreate.query>;
-  }): Promise<IUserReturnType['create']> {
-    return await axios.post(requestUrl('/user/create/'.concat(props.params.urlParameter)), props.body);
+  async create(props: z.infer<typeof UserSchema.create>): Promise<IUserReturnType['create']> {
+    return await request(props, '/user/create/');
   }
 
-  async update(props: {
-    body: z.infer<typeof UserSchemaUpdate.body>;
-    params: z.infer<typeof UserSchemaUpdate.params>;
-    query: z.infer<typeof UserSchemaUpdate.query>;
-  }): Promise<IUserReturnType['update']> {
-    return await axios.post(requestUrl('/user/create'.concat(props.params.urlParameter)), props.body);
+  async update(props: z.infer<typeof UserSchema.update>): Promise<IUserReturnType['update']> {
+    return await request(props, '/user/update/');
   }
 }
