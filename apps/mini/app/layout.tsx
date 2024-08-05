@@ -4,7 +4,7 @@ import { AppProviders, fontSans } from "./lib";
 import { cn } from "@repo/ui";
 
 export const metadata: Metadata = {
-  title: "Rampage",
+  title: "Chess",
   description: "An easy to use off-ramping platform",
 };
 
