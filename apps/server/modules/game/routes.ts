@@ -1,16 +1,15 @@
-import { Hono } from "hono";
-import { BeneficiaryService } from "./service";
-import { BeneficiaryRepository } from "./repo";
-import { AirtimeBeneficiarySchema as schema } from "@repo/rpc";
-import { zValidator } from "@hono/zod-validator";
-import { HttpStatusCode } from "axios";
+import { Hono } from 'hono';
+import { ApiSchema as schema } from '@repo/rpc';
+import { zValidator } from '@hono/zod-validator';
+import { HttpStatusCode } from 'axios';
+import { GameService } from './service';
 
-const service = new BeneficiaryService(new BeneficiaryRepository());
+const service = new GameService();
 
-export const beneficiaryRoutes = new Hono()
-  .post("/create", zValidator("json", schema.create), async (c) => {
+export const gameRoutes = new Hono()
+  .post('/create', zValidator('json', schema.game.create), async (c) => {
     try {
-      const payload = c.req.valid("json");
+      const payload = c.req.valid('json');
       return c.json(await service.create(payload));
     } catch (error) {
       return c.json(
@@ -21,23 +20,10 @@ export const beneficiaryRoutes = new Hono()
       );
     }
   })
-  .post("/get_all", zValidator("json", schema.getAll), async (c) => {
+  .post('/update', zValidator('json', schema.game.update), async (c) => {
     try {
-      const payload = c.req.valid("json");
-      return c.json(await service.getAll(payload));
-    } catch (error) {
-      return c.json(
-        {
-          msg: error,
-        },
-        HttpStatusCode.InternalServerError
-      );
-    }
-  })
-  .post("/delete", zValidator("json", schema.delete), async (c) => {
-    try {
-      const payload = c.req.valid("json");
-      return c.json(await service.delete(payload));
+      const payload = c.req.valid('json');
+      return c.json(await service.create(payload));
     } catch (error) {
       return c.json(
         {
