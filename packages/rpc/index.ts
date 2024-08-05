@@ -1,18 +1,22 @@
-import { AirtimeBeneficiaryRpc, AirtimeBeneficiarySchema } from './airtimeBeneficiary';
-import { GiftCardRpc, GiftCardSchema } from './giftcard';
+import { GameRpc } from './game';
+import { GameSchema } from './game/schema';
+import { ScoreRpc } from './score';
+import { ScoreSchema } from './score/schema';
 import { UserRpc } from './user';
+import { UserSchema } from './user/schema';
 
 export const AppRpc = {
-  airtimeBeneficiary: new AirtimeBeneficiaryRpc(),
-  giftCard: new GiftCardRpc(),
+  score: new ScoreRpc(),
+  game: new GameRpc(),
   user: new UserRpc(),
 };
 
 export const ApiSchema = {
-  airtimeBeneficiary: AirtimeBeneficiarySchema,
-  giftCard: GiftCardSchema,
+  score: ScoreSchema,
+  game: GameSchema,
+  user: UserSchema,
 };
 
-export * from './airtimeBeneficiary';
-export * from './giftcard';
+export * from './score';
+export * from './game';
 export * from './user';
