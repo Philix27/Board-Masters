@@ -1,15 +1,16 @@
 import { z } from 'zod';
 
-export const ScoreSchema = {
+export const MovesSchema = {
   create: z.object({
-    urlParameter: z.string(),
+    walletAddress: z.string(),
+    network: z.string(),
   }),
   update: z.object({
     urlParameter: z.string(),
   }),
 };
 
-export type IScoreReturnType = {
+export type IMovesReturnType = {
   update: {
     msg: string;
   };

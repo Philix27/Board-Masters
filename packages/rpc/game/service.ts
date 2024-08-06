@@ -1,16 +1,16 @@
 import { z } from 'zod';
-import { IGame, ApiSchema } from '@repo/rpc';
-import { IGameReturnType } from '@repo/rpc/game/schema';
-import { logFn } from '@server/lib';
+import { logFn } from '@/lib';
+import { IGame } from '.';
+import { GameSchema, IGameReturnType } from './schema';
 
 export class GameService implements IGame {
   @logFn()
-  create(props: z.infer<typeof ApiSchema.game.create>): Promise<IGameReturnType['create']> {
+  create(props: z.infer<typeof GameSchema.create>): Promise<IGameReturnType['create']> {
     throw new Error('Method not implemented.');
   }
 
   @logFn()
-  update(props: z.infer<typeof ApiSchema.game.update>): Promise<IGameReturnType['update']> {
+  update(props: z.infer<typeof GameSchema.update>): Promise<IGameReturnType['update']> {
     throw new Error('Method not implemented.');
   }
 }

@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "jsxImportSource": "hono/jsx",
     "paths": {
-      "@server/*": ["./*"]
+      "@/*": ["./*"]
     }
   }
 }
