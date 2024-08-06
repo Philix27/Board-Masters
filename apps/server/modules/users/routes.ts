@@ -1,14 +1,13 @@
 import { Hono } from 'hono';
-import { ApiSchema as schema } from '@repo/rpc';
+import { ApiSchema, ApiService } from '@repo/rpc';
 import { zValidator } from '@hono/zod-validator';
 import { HttpStatusCode } from 'axios';
-import { UserService } from './service';
-import { PrismaClient } from '@prisma/client';
 
-const service = new UserService(new PrismaClient());
+const service = new ApiService.user();
+const schema = ApiSchema.user;
 
 export const userRoutes = new Hono()
-  .post('/create', zValidator('json', schema.user.create), async (c) => {
+  .post('/create', zValidator('json', schema.create), async (c) => {
     console.log('Create user');
     try {
       const payload = c.req.valid('json');
@@ -17,7 +16,7 @@ export const userRoutes = new Hono()
       return c.json({ error }, HttpStatusCode.InternalServerError);
     }
   })
-  .post('/update', zValidator('json', schema.user.update), async (c) => {
+  .post('/update', zValidator('json', schema.update), async (c) => {
     try {
       const payload = c.req.valid('json');
       return c.json(await service.update(payload));
