@@ -1,6 +1,7 @@
-import { scoreRoutes } from '@server/modules';
-import { gameRoutes, userRoutes } from '../modules';
+import { movesRoutes } from './moves';
+import { gameRoutes } from './game';
 import { indexRoutes } from './home';
+import { userRoutes } from './user';
 import { Hono } from 'hono';
 import { BlankEnv, BlankSchema } from 'hono/types';
 
@@ -9,7 +10,7 @@ export function registerRoutes(app: Hono<BlankEnv, BlankSchema, '/'>) {
     .basePath('/api')
     .route('/', indexRoutes)
     .route('/user', userRoutes)
-    .route('/score', scoreRoutes)
+    .route('/moves', movesRoutes)
     .route('/games', gameRoutes);
 
   return apiRoutes;

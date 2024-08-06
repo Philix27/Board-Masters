@@ -1,13 +1,13 @@
 import { Hono } from 'hono';
-import { ApiSchema as schema } from '@repo/rpc';
+import { ApiSchema, ApiService } from '@repo/rpc';
 import { zValidator } from '@hono/zod-validator';
 import { HttpStatusCode } from 'axios';
-import { GameService } from './service';
 
-const service = new GameService();
+const service = new ApiService.user();
+const schema = ApiSchema.user;
 
-export const gameRoutes = new Hono()
-  .post('/create', zValidator('json', schema.game.create), async (c) => {
+export const movesRoutes = new Hono()
+  .post('/create', zValidator('json', schema.create), async (c) => {
     try {
       const payload = c.req.valid('json');
       return c.json(await service.create(payload));
@@ -20,10 +20,10 @@ export const gameRoutes = new Hono()
       );
     }
   })
-  .post('/update', zValidator('json', schema.game.update), async (c) => {
+  .post('/update', zValidator('json', schema.update), async (c) => {
     try {
       const payload = c.req.valid('json');
-      return c.json(await service.create(payload));
+      return c.json(await service.update(payload));
     } catch (error) {
       return c.json(
         {
