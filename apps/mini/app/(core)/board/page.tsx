@@ -104,12 +104,12 @@ export default function BoardPage() {
           customDropSquareStyle={{ boxShadow: 'inset 0 0 1px 6px rgba(255, 255, 255, 0.75)' }}
           customPieces={customPieces}
         />
-        ;
-        <div>
+
+        {/* <div>
           {game.moves().map((m, i) => (
             <TextP key={i}>{m}</TextP>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
