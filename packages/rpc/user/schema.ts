@@ -2,7 +2,8 @@ import { z } from 'zod';
 
 export const UserSchema = {
   create: z.object({
-    urlParameter: z.string(),
+    walletAddress: z.string(),
+    network: z.string(),
   }),
   update: z.object({
     urlParameter: z.string(),

@@ -1,24 +1,25 @@
 import { PrismaClient } from '@prisma/client';
 import { ApiSchema, IUser } from '@repo/rpc';
+import { logFn } from '@server/lib';
 import { z } from 'zod';
 
 export class UserService implements IUser {
   constructor(private readonly repo: PrismaClient) {}
+
+  @logFn()
   async create(props: z.infer<typeof ApiSchema.user.create>): Promise<{ msg: string }> {
     const res = await this.repo.user.create({
       data: {
-        name: '',
-        email: '',
-        password: '',
         username: '',
-        rating: 2,
-        provider: 'GUEST',
+        walletAddress: props.walletAddress,
+        name: '',
       },
     });
 
-    return { msg: '' };
+    return { msg: 'success' };
   }
 
+  @logFn()
   async update(props: z.infer<typeof ApiSchema.user.update>): Promise<{ msg: string }> {
     throw new Error('Method not implemented.');
   }
