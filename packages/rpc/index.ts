@@ -8,6 +8,7 @@ import { MovesService } from './moves/service';
 import { UserRpc } from './user';
 import { UserSchema } from './user/schema';
 import { UserService } from './user/service';
+import * as lib from '@/lib';
 
 export const ApiRpc = {
   game: new GameRpc(),
@@ -26,3 +27,5 @@ export const ApiService = {
   user: UserService,
   moves: MovesService,
 };
+
+export const { AppError, appLogger, logFn } = lib;
