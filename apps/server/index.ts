@@ -6,14 +6,11 @@ import { appLogger } from '@repo/rpc';
 import { createBunWebSocket } from 'hono/bun';
 export * from './routes';
 
-export type EventType = 'MOVE' | 'GAME_START';
 const { upgradeWebSocket, websocket } = createBunWebSocket();
 
 const app = new Hono();
 
-// app.use("*", cors({ origin: "*" }));
 app.use('*', cors({ origin: ['*', 'http://localhost:3000'] }));
-// app.use("*", logger());
 
 app.use('*', logger(appLogger));
 
@@ -44,7 +41,7 @@ console.log(`Server is running on port ${port}`);
 Bun.serve({
   port,
   fetch: app.fetch,
-  websocket,
+  // websocket,
 });
 
 export type AppType = typeof routes;

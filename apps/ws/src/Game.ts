@@ -182,7 +182,7 @@ export class Game {
   }
 
   async addMoveToDb(move: Move, moveTimestamp: Date) {
-    
+
     await db.$transaction([
       db.move.create({
         data: {
@@ -212,7 +212,7 @@ export class Game {
     user: User,
     move: Move
   ) {
-    
+
     // validate the type of move using zod
     if (this.board.turn() === 'w' && user.userId !== this.player1UserId) {
       return;
@@ -276,7 +276,7 @@ export class Game {
       : this.board.turn() === 'b'
         ? 'WHITE_WINS'
         : 'BLACK_WINS';
-        
+
       this.endGame("COMPLETED", result);
     }
 
@@ -326,7 +326,7 @@ export class Game {
     const updatedGame = await db.game.update({
       data: {
         status,
-        result: result,
+        result,
       },
       where: {
         id: this.gameId,

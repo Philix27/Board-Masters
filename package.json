@@ -1,5 +1,5 @@
 {
-  "name": "chess",
+  "name": "board-masters",
   "private": true,
   "scripts": {
     "build": "turbo build",

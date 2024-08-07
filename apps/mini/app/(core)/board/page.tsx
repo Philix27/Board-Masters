@@ -1,19 +1,22 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chess, Piece, Square } from 'chess.js';
 import React from 'react';
 import { Navbar } from '../_comps';
 import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
 import { AppButton, TextP } from '@repo/ui';
+import { useSocket } from '@/app/lib/hooks/useSocket';
 
 export default function BoardPage() {
   const chess = new Chess();
   const [game, setGame] = useState(chess);
-  const [gameMoves, setGameMoves] = useState<string[]>([]);
+  const [gameMoves, setGameMoves] = useState<{ from: string; to: string }[]>([]);
   const [counter, setCounter] = useState(0);
   const [isGameStarted, setGameStarted] = useState(false);
-  let timeoutId: NodeJS.Timeout = 0;
+  let timeoutId: NodeJS.Timeout;
+
+  const socket = useSocket();
 
   function makeAMove(
     move:
@@ -53,6 +56,18 @@ export default function BoardPage() {
       });
     } catch (e) {
       move = null;
+    }
+
+    if (move !== null) {
+      setGameMoves((prev) => {
+        return [
+          ...prev,
+          {
+            from: move.from,
+            to: move.to,
+          },
+        ];
+      });
     }
 
     setGame(game);
@@ -105,11 +120,14 @@ export default function BoardPage() {
           customPieces={customPieces}
         />
 
-        {/* <div>
-          {game.moves().map((m, i) => (
-            <TextP key={i}>{m}</TextP>
+        <div>
+          {gameMoves.map((m, i) => (
+            <div key={i}>
+              <TextP>From: {m.from}</TextP>
+              <TextP>To: {m.to}</TextP>
+            </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   );
