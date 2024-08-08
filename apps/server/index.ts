@@ -31,6 +31,12 @@ app
         onClose: () => {
           console.log('Connection closed');
         },
+        onOpen: () => {
+          console.log('User connected');
+        },
+        onError: () => {
+          console.log('Error:');
+        },
       };
     })
   );
@@ -41,7 +47,7 @@ console.log(`Server is running on port ${port}`);
 Bun.serve({
   port,
   fetch: app.fetch,
-  // websocket,
+  websocket,
 });
 
 export type AppType = typeof routes;

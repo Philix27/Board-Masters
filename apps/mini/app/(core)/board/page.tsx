@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Chess, Piece, Square } from 'chess.js';
+import { Chess, Move, Piece, Square } from 'chess.js';
 import React from 'react';
 import { Navbar } from '../_comps';
 import { customPieces } from './piece';
@@ -28,7 +28,13 @@ export default function BoardPage() {
         }
   ) {
     const gameCopy = game;
-    const result = gameCopy.move(move);
+    let result = null;
+
+    try {
+      result = gameCopy.move(move);
+    } catch (e) {
+      result = null;
+    }
     setGame(gameCopy);
     // null if the move was illegal, the move object if the move was legal
     return result;
@@ -42,49 +48,48 @@ export default function BoardPage() {
   }
 
   function onDrop(sourceSquare: Square, targetSquare: Square) {
-    // todo: Validate move
-    console.log('Target ', targetSquare, sourceSquare);
+    let move = makeAMove({
+      from: sourceSquare,
+      to: targetSquare,
+      promotion: 'q',
+    });
 
-    // const gameCopy = game;
-
-    let move;
-    try {
-      move = game.move({
-        from: sourceSquare,
-        to: targetSquare,
-        promotion: 'q', // always promote to a queen for example simplicity
-      });
-    } catch (e) {
-      move = null;
-    }
-
-    if (move !== null) {
-      setGameMoves((prev) => {
-        return [
-          ...prev,
-          {
-            from: move.from,
-            to: move.to,
-          },
-        ];
-      });
-    }
+    if (move === null) return false;
 
     setGame(game);
 
-    if (!isGameStarted) {
-      setGameStarted(true);
-      timeoutId = setInterval(() => {
-        setCounter((prev) => {
-          return prev + 1;
-        });
-      }, 1000);
-    }
-    // illegal move
-    if (move === null) return false;
+    trackMoves(move);
+
+    startCounter();
+
     setTimeout(makeRandomMove, 200);
+
     return true;
   }
+
+  function trackMoves(move: Move) {
+    setGameMoves((prev) => {
+      return [
+        ...prev,
+        {
+          from: move.from,
+          to: move.to,
+        },
+      ];
+    });
+  }
+
+  function startCounter() {
+    if (isGameStarted) return;
+
+    setGameStarted(true);
+    timeoutId = setInterval(() => {
+      setCounter((prev) => {
+        return prev + 1;
+      });
+    }, 1000);
+  }
+
   return (
     <>
       <Navbar title={'Board'} isBack />
