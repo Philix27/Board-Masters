@@ -83,9 +83,6 @@ importers:
       clsx:
         specifier: ^2.1.0
         version: 2.1.1
-      ethers:
-        specifier: ^6.12.1
-        version: 6.13.2
       framer-motion:
         specifier: ^10.17.9
         version: 10.18.0(react-dom@18.2.0)(react@18.2.0)
@@ -146,9 +143,6 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.6
         version: 1.0.7(tailwindcss@3.4.7)
-      viem:
-        specifier: ^2.10.5
-        version: 2.18.7(typescript@5.5.4)(zod@3.23.8)
       wagmi:
         specifier: ^2.8.7
         version: 2.12.2(@tanstack/react-query@4.36.1)(@types/react@18.3.3)(react-dom@18.2.0)(react-native@0.74.4)(react@18.2.0)(typescript@5.5.4)(viem@2.18.7)(zod@3.23.8)
@@ -189,22 +183,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.7
         version: 3.4.7
-
-  apps/peerjs:
-    dependencies:
-      peer:
-        specifier: ^0.6.1
-        version: 0.6.1
-    devDependencies:
-      '@types/node':
-        specifier: ^17.0.18
-        version: 17.0.45
-      tslint:
-        specifier: ^6.1.3
-        version: 6.1.3(typescript@4.9.5)
-      typescript:
-        specifier: ^4.5.5
-        version: 4.9.5
 
   apps/server:
     dependencies:
@@ -302,6 +280,9 @@ importers:
 
   apps/ws:
     dependencies:
+      '@repo/rpc':
+        specifier: workspace:*
+        version: link:../../packages/rpc
       '@types/uuid':
         specifier: ^8.3.4
         version: 8.3.4
@@ -366,6 +347,9 @@ importers:
       drizzle-zod:
         specifier: ^0.5.1
         version: 0.5.1(drizzle-orm@0.31.4)(zod@3.23.8)
+      ethers:
+        specifier: ^6.12.1
+        version: 6.13.2
       pg:
         specifier: ^8.12.0
         version: 8.12.0
@@ -4452,7 +4436,7 @@ packages:
   /@scure/bip32@1.4.0:
     resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.7
     dev: false
@@ -4947,12 +4931,6 @@ packages:
 
   /@types/uuid@8.3.4:
     resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
-    dev: false
-
-  /@types/ws@7.4.7:
-    resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
-    dependencies:
-      '@types/node': 20.14.14
     dev: false
 
   /@types/ws@8.5.12:
@@ -8168,7 +8146,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.15.0
       is-glob: 4.0.3
@@ -11540,26 +11518,6 @@ packages:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
     dev: false
 
-  /peer@0.6.1:
-    resolution: {integrity: sha512-zPJSPoZvo+83sPJNrW8o93QTktx7dKk67965RRDDNAIelWw1ZwE6ZmmhsvRrdNRlK0knQb3rR8GBdZlbWzCYJw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      '@types/cors': 2.8.17
-      '@types/express': 4.17.21
-      '@types/ws': 7.4.7
-      body-parser: 1.20.2
-      cors: 2.8.5
-      express: 4.19.2
-      uuid: 3.4.0
-      ws: 7.5.10
-      yargs: 15.4.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    dev: false
-
   /pg-cloudflare@1.1.1:
     resolution: {integrity: sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==}
     requiresBuild: true
@@ -14219,12 +14177,6 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
-  /uuid@3.4.0:
-    resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
-    hasBin: true
-    dev: false
-
   /uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
@@ -14362,7 +14314,7 @@ packages:
   /webauthn-p256@0.0.5:
     resolution: {integrity: sha512-drMGNWKdaixZNobeORVIqq7k5DsRC9FnG201K2QjeOoQLmtSDaSsVZdkg6n5jUALJKcAG++zBPJXmv6hy0nWFg==}
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
     dev: false
 

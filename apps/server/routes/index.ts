@@ -15,4 +15,3 @@ export function registerRoutes(app: Hono<BlankEnv, BlankSchema, '/'>) {
 
   return apiRoutes;
 }
-onError

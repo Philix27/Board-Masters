@@ -22,12 +22,15 @@ interface IMessage {
 }
 
 export const roomHandler = (socket: Socket) => {
+ 
+
     const createRoom = () => {
         const roomId = uuidV4();
         rooms[roomId] = {};
-        socket.emit("room-created", { roomId });
         console.log("user created the room");
+        socket.emit("room-created", { roomId });
     };
+
     const joinRoom = ({ roomId, peerId, userName }: IJoinRoomParams) => {
         if (!rooms[roomId]) rooms[roomId] = {};
         if (!chats[roomId]) chats[roomId] = [];
@@ -85,6 +88,7 @@ export const roomHandler = (socket: Socket) => {
             socket.to(roomId).emit("name-changed", { peerId, userName });
         }
     };
+    
     socket.on("create-room", createRoom);
     socket.on("join-room", joinRoom);
     socket.on("start-sharing", startSharing);
