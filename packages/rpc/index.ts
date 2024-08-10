@@ -29,3 +29,4 @@ export const ApiService = {
 };
 
 export const { AppError, appLogger, logFn } = lib;
+export * from './socketEvents';

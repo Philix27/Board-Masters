@@ -13,8 +13,7 @@
     "dev:wss": "turbo run dev --filter=wss",
     "dev:server": "turbo run dev --filter=server",
     "dev:backend": "turbo run dev --filter=backend",
-    "build:mini": "turbo run build --filter=mini",
-    "build:frontend": "turbo run build --filter=frontend"
+    "build:mini": "turbo run build --filter=mini"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

@@ -10,6 +10,11 @@ export class GameService implements IGame {
   }
 
   @logFn()
+  movePiece(props: z.infer<typeof GameSchema.movePiece>): Promise<IGameReturnType['movePiece']> {
+    throw new Error('Method not implemented.');
+  }
+
+  @logFn()
   update(props: z.infer<typeof GameSchema.update>): Promise<IGameReturnType['update']> {
     throw new Error('Method not implemented.');
   }
