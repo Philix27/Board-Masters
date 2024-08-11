@@ -1,7 +1,6 @@
 import { WebSocket } from 'ws';
 import { Game } from './Game';
 import { socketManager, User } from './SocketManager';
-import { GameStatus } from '@prisma/client';
 
 export class GameManager {
   private games: Game[];

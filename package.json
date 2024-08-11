@@ -9,10 +9,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "dev:mini": "turbo run dev --filter=mini",
-    "dev:frontend": "turbo run dev --filter=frontend",
     "dev:wss": "turbo run dev --filter=wss",
     "dev:server": "turbo run dev --filter=server",
-    "dev:backend": "turbo run dev --filter=backend",
     "build:mini": "turbo run build --filter=mini"
   },
   "devDependencies": {

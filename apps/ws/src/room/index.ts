@@ -3,6 +3,7 @@ import { ApiService, SocketEvents } from '@repo/rpc';
 
 const rooms: Record<string, Record<string, IUser>> = {};
 const chats: Record<string, IMessage[]> = {};
+
 interface IUser {
   peerId: string;
   userName: string;
@@ -47,7 +48,7 @@ export const roomHandler = (socket: Socket) => {
     } catch (error) {}
   };
 
-  //   const joinRoom = ({ roomId, peerId, userName }: IJoinRoomParams) => {
+    // const joinRoom = ({ roomId, peerId, userName }: IJoinRoomParams) => {
   //     if (!rooms[roomId]) rooms[roomId] = {};
   //     if (!chats[roomId]) chats[roomId] = [];
   //     socket.emit('get-messages', chats[roomId]);
