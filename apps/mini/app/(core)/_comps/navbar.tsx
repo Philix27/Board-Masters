@@ -18,7 +18,7 @@ export function Navbar(props: {
   return (
     <div
       className={
-        "h-[50px] border-b-[0.3px] px-4 flex items-center justify-between"
+        "h-[50px] border-b-[0.3px] px-4 flex items-center justify-between fixed top-0 w-full z-10 bg-background"
       }
     >
       <div className="flex items-center gap-x-2">

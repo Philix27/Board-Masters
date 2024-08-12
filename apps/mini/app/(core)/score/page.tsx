@@ -8,7 +8,7 @@ export default function ScoreBoardPage() {
   return (
     <>
       <Navbar title={'Score Board'} isBack />
-      <div className={'flex flex-col items-center px-4 py-4'}>
+      <div className={'flex flex-col items-center px-4 py-4 mt-[50px]'}>
         {dummyData.map((val, i) => (
           <Row key={i} {...val} />
         ))}

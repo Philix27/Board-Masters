@@ -1,13 +1,16 @@
 import { AppStores } from '@/app/lib';
-import { TextP } from '@repo/ui';
+import { cn, TextP } from '@repo/ui';
 
 export function Tabs() {
   const store = AppStores.useSettingsStore();
   return (
-    <div className="mb-2">
-      <div className="flex items-center justify-evenly">
+    <div className="mt-5">
+      <div className="flex items-center justify-between">
         <div
-          className="bg-secondary w-full border-primary border-b-2 px-3 py-2"
+          className={cn(
+            'flex items-center justify-center bg-secondary w-full px-3 py-2',
+            store.movesView === 'FULL' && 'border-primary border-b-2'
+          )}
           onClick={() =>
             store.update({
               movesView: 'FULL',
@@ -17,7 +20,10 @@ export function Tabs() {
           <TextP>Full</TextP>
         </div>
         <div
-          className="bg-secondary w-full border-primary border-b-2 px-3 py-2"
+          className={cn(
+            'flex items-center justify-center bg-secondary w-full px-3 py-2',
+            store.movesView === 'WHITE' && 'border-primary border-b-2'
+          )}
           onClick={() =>
             store.update({
               movesView: 'WHITE',
@@ -27,7 +33,10 @@ export function Tabs() {
           <TextP>White</TextP>
         </div>
         <div
-          className="bg-secondary w-full border-primary border-b-2 px-3 py-2"
+          className={cn(
+            'flex items-center justify-center bg-secondary w-full px-3 py-2',
+            store.movesView === 'BLACK' && 'border-primary border-b-2'
+          )}
           onClick={() =>
             store.update({
               movesView: 'BLACK',

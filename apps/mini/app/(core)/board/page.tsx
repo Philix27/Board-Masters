@@ -10,6 +10,7 @@ import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { AppStores } from '@/app/lib';
 import { Tabs } from './Tabs';
+import { BoardMoves, IBoardMoves } from './Moves';
 // import { SocketEvents } from '@repo/rpc';
 const WS_URL = 'ws://localhost:9400';
 const ws = socketIO(WS_URL);
@@ -17,10 +18,11 @@ const ws = socketIO(WS_URL);
 export default function BoardPage() {
   const chess = new Chess();
   const [game, setGame] = useState(chess);
-  const [gameMoves, setGameMoves] = useState<{ from: string; to: string; piece: Piece }[]>([]);
+  const [gameMoves, setGameMoves] = useState<IBoardMoves[]>([]);
   const [counter, setCounter] = useState(0);
   const [isGameStarted, setGameStarted] = useState(false);
   let timeoutId: NodeJS.Timeout;
+  const store = AppStores.useSettingsStore();
 
   function makeAMove(
     move:
@@ -48,7 +50,19 @@ export default function BoardPage() {
     const possibleMoves = game.moves();
     if (game.isGameOver() || game.isDraw() || possibleMoves.length === 0) return; // exit if the game is over
     const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-    makeAMove(possibleMoves[randomIndex]!);
+    const move = makeAMove(possibleMoves[randomIndex]!);
+    if (move) {
+      setGameMoves((prev) => {
+        return [
+          ...prev,
+          {
+            piece: `${move.color}${move.piece.toUpperCase()}` as Piece,
+            from: move.from,
+            to: move.to,
+          },
+        ];
+      });
+    }
   }
 
   function onDrop(sourceSquare: Square, targetSquare: Square, piece: Piece) {
@@ -102,23 +116,16 @@ export default function BoardPage() {
     }, 1000);
   }
 
-  // if (socket == null) {
-  //   return (
-  //     <div>
-  //       <p>Hero man</p>
-  //     </div>
-  //   );
-  // }
   return (
     <>
       <Navbar title={'Board'} isBack />
-      <div className="px-6">
+      <div className="px-6 mt-[50px]">
         <div className="w-full flex items-center justify-between py-2">
-          <TextP v="p3">0:00 {counter}</TextP>
+          <TextP v="p3">{counter}</TextP>
 
-          <AppButton className="w-fit py-[1px]" onClick={() => {}}>
+          {/* <AppButton className="w-fit py-[1px]" onClick={() => {}}>
             Stop
-          </AppButton>
+          </AppButton> */}
         </div>
         <Chessboard
           id={'BasicBoard'}
@@ -135,20 +142,9 @@ export default function BoardPage() {
           customPieces={customPieces}
         />
 
-        <div className="mt-4">
-          <Tabs />
-          {gameMoves.map((m, i) => (
-            <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
-              <div className="flex items-center">
-                <img src={`/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
-                <TextP> {m.from}</TextP>
-              </div>
-              <TextP>{m.to}</TextP>
-            </div>
-          ))}
-        </div>
+        <Tabs />
+        <BoardMoves gameMoves={gameMoves} />
       </div>
     </>
   );
 }
-

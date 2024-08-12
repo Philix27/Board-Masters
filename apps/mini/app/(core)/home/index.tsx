@@ -12,7 +12,7 @@ export function HomePage() {
     <>
       <Navbar title={'Home'} icon={MdScoreboard} onIconClick={() => {}} />
 
-      <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-6 py-4">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-6 py-4 mt-[50px]">
         {dashboardItems.map((val, i) => (
           <Link href={val.link}>
             <div key={i} className={cn(`px-3 py-1 rounded-md`, val.color)}>

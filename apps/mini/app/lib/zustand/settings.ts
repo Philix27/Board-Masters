@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export interface ISlice {
   drawerIsOpen?: boolean;
   homeContent?: 'BUY' | 'SELL' | 'NONE';
-  movesView: 'FULL' | 'WHITE' | 'BLACK';
+  movesView?: 'FULL' | 'WHITE' | 'BLACK';
 }
 
 export interface ISliceUpdate extends Required<ISlice> {

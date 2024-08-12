@@ -1,7 +1,6 @@
 'use client';
 
-import { Navbar, ToggleSwitch } from '../_comps';
-import { AppButton, AppTextInput, cn, TextP } from '@repo/ui';
+import { Navbar } from '../_comps';
 import React, { useState } from 'react';
 import { z } from 'zod';
 
@@ -11,7 +10,7 @@ export default function FxCrypto() {
   return (
     <>
       <Navbar title={'Learn'} isBack />
-      <div className="w-full mt-4 px-6 ">Learn chess</div>
+      <div className="w-full mt-4 px-6 mt-[50px]">Learn chess</div>
     </>
   );
 }
