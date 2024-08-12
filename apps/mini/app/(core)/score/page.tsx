@@ -1,14 +1,48 @@
 'use client';
 
 import React from 'react';
-import { Navbar, } from '../_comps';
+import { Navbar, Tabs } from '../_comps';
 import { TextP } from '@repo/ui';
+import { AppStores } from '@/lib';
 
 export default function ScoreBoardPage() {
+  const store = AppStores.useSettingsStore();
   return (
     <>
       <Navbar title={'Score Board'} isBack />
-      <div className={'flex flex-col items-center px-4 py-4 mt-[50px]'}>
+
+      <div className={'flex flex-col items-center px-4 py-4 mt-[50px] w-full'}>
+        <Tabs
+          data={[
+            {
+              title: 'All',
+              isActive: store.movesView === 'FULL',
+              onClick: () => {
+                store.update({
+                  movesView: 'FULL',
+                });
+              },
+            },
+            {
+              title: 'White',
+              isActive: store.movesView === 'WHITE',
+              onClick: () => {
+                store.update({
+                  movesView: 'WHITE',
+                });
+              },
+            },
+            {
+              title: 'Black',
+              isActive: store.movesView === 'BLACK',
+              onClick: () => {
+                store.update({
+                  movesView: 'BLACK',
+                });
+              },
+            },
+          ]}
+        />
         {dummyData.map((val, i) => (
           <Row key={i} {...val} />
         ))}

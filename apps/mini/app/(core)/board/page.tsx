@@ -9,7 +9,7 @@ import { AppButton, TextP } from '@repo/ui';
 import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { AppStores } from '@/app/lib';
-import { Tabs } from './Tabs';
+import { Tabs } from '../_comps/Tabs';
 import { BoardMoves, IBoardMoves } from './Moves';
 // import { SocketEvents } from '@repo/rpc';
 const WS_URL = 'ws://localhost:9400';
@@ -141,8 +141,38 @@ export default function BoardPage() {
           customDropSquareStyle={{ boxShadow: 'inset 0 0 1px 6px rgba(255, 255, 255, 0.75)' }}
           customPieces={customPieces}
         />
-
-        <Tabs />
+        <div className="my-4" />
+        <Tabs
+          data={[
+            {
+              title: 'All',
+              isActive: store.movesView === 'FULL',
+              onClick: () => {
+                store.update({
+                  movesView: 'FULL',
+                });
+              },
+            },
+            {
+              title: 'White',
+              isActive: store.movesView === 'WHITE',
+              onClick: () => {
+                store.update({
+                  movesView: 'WHITE',
+                });
+              },
+            },
+            {
+              title: 'Black',
+              isActive: store.movesView === 'BLACK',
+              onClick: () => {
+                store.update({
+                  movesView: 'BLACK',
+                });
+              },
+            },
+          ]}
+        />
         <BoardMoves gameMoves={gameMoves} />
       </div>
     </>

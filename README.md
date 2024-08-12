@@ -46,7 +46,7 @@ Smart Contract: Foundary
 ## Links
 - [Live Demo](https://www.youtube.com/)
 - [Video Walk through](https://www.youtube.com/)
-- [Github](https://www.youtube.com/)
+- [Github](https://github.com/Philix27/Board-Masters)
 
 
 
