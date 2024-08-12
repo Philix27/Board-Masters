@@ -1,15 +1,9 @@
 ![banner](./assets/landing.png)
 
 # Board Masters
-This is a simple multiplayer chess game.
-
-### Problems
-- Challenges of paying bills and buying digital assets using cryptocurrencies.
-
-### Solution
-- Provide aa easy way to purchase airtime and data plans for friends and family
-- Pay for utility such as light, GoTv, MyTv subscription using cUSD.
-
+This is a simple multiplayer chess game. We aim the solve the challenges of participating in 
+various chess tournament and also provide a platform where friends can come together and play 
+games.
 
 ## Features and Roadmap
     [] Multiplayer

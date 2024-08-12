@@ -3,7 +3,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 export interface ISlice {
   drawerIsOpen?: boolean;
-  homeContent?: "BUY" | "SELL" | "NONE";
+  homeContent?: 'BUY' | 'SELL' | 'NONE';
+  movesView: 'FULL' | 'WHITE' | 'BLACK';
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -13,7 +14,8 @@ export interface ISliceUpdate extends Required<ISlice> {
 
 export const defaultValues: Required<ISlice> = {
   drawerIsOpen: false,
-  homeContent: "NONE"
+  homeContent: "NONE",
+  movesView: "FULL"
 };
 
 export const useSettingsStore = create(

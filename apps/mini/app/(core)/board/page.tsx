@@ -7,6 +7,9 @@ import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
 import { AppButton, TextP } from '@repo/ui';
 import socketIO, { Socket } from 'socket.io-client';
+import { Piece } from 'react-chessboard/dist/chessboard/types';
+import { AppStores } from '@/app/lib';
+import { Tabs } from './Tabs';
 // import { SocketEvents } from '@repo/rpc';
 const WS_URL = 'ws://localhost:9400';
 const ws = socketIO(WS_URL);
@@ -14,7 +17,7 @@ const ws = socketIO(WS_URL);
 export default function BoardPage() {
   const chess = new Chess();
   const [game, setGame] = useState(chess);
-  const [gameMoves, setGameMoves] = useState<{ from: string; to: string }[]>([]);
+  const [gameMoves, setGameMoves] = useState<{ from: string; to: string; piece: Piece }[]>([]);
   const [counter, setCounter] = useState(0);
   const [isGameStarted, setGameStarted] = useState(false);
   let timeoutId: NodeJS.Timeout;
@@ -48,7 +51,8 @@ export default function BoardPage() {
     makeAMove(possibleMoves[randomIndex]!);
   }
 
-  function onDrop(sourceSquare: Square, targetSquare: Square) {
+  function onDrop(sourceSquare: Square, targetSquare: Square, piece: Piece) {
+    console.log('onDrop called ');
     let move = makeAMove({
       from: sourceSquare,
       to: targetSquare,
@@ -56,11 +60,16 @@ export default function BoardPage() {
     });
 
     if (move === null) return false;
-    console.log('Move is null');
+
+    ws.emit('MOVE_PIECE', {
+      from: move.from,
+      to: move.to,
+      userAddress: '0x467372',
+    });
+
     setGame(game);
 
-    trackMoves(move);
-    console.log('Move track');
+    trackMoves(move, piece);
 
     startCounter();
 
@@ -69,11 +78,12 @@ export default function BoardPage() {
     return true;
   }
 
-  function trackMoves(move: Move) {
+  function trackMoves(move: Move, piece: Piece) {
     setGameMoves((prev) => {
       return [
         ...prev,
         {
+          piece,
           from: move.from,
           to: move.to,
         },
@@ -106,42 +116,34 @@ export default function BoardPage() {
         <div className="w-full flex items-center justify-between py-2">
           <TextP v="p3">0:00 {counter}</TextP>
 
-          <AppButton
-            className="w-fit py-[1px]"
-            onClick={() => {
-              ws.emit('MOVE_PIECE', {
-                from: 'm1',
-                to: 'm2',
-                userAddress: '0x467372',
-              });
-              console.log('Emitted');
-              // emitter('MOVE_PIECE', {
-              //   from: 'm1',
-              //   to: 'm2',
-              // });
-            }}
-          >
+          <AppButton className="w-fit py-[1px]" onClick={() => {}}>
             Stop
           </AppButton>
         </div>
         <Chessboard
-          id={'ChessBoard'}
-          // arePiecesDraggable={false}
+          id={'BasicBoard'}
+          allowDragOutsideBoard={false}
+          arePiecesDraggable={true}
           position={game.fen()}
           onPieceDrop={onDrop}
-          showBoardNotation={false}
+          showBoardNotation={true}
           customBoardStyle={{ borderRadius: '5px', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)' }}
-          customDarkSquareStyle={{ backgroundColor: '#58A181' }}
+          customDarkSquareStyle={{ backgroundColor: '#5892A1' }}
+          // customDarkSquareStyle={{ backgroundColor: '#58A181' }}
           customLightSquareStyle={{ backgroundColor: '#C5C5C5' }}
           customDropSquareStyle={{ boxShadow: 'inset 0 0 1px 6px rgba(255, 255, 255, 0.75)' }}
           customPieces={customPieces}
         />
 
-        <div>
+        <div className="mt-4">
+          <Tabs />
           {gameMoves.map((m, i) => (
-            <div key={i}>
-              <TextP>From: {m.from}</TextP>
-              <TextP>To: {m.to}</TextP>
+            <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
+              <div className="flex items-center">
+                <img src={`/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
+                <TextP> {m.from}</TextP>
+              </div>
+              <TextP>{m.to}</TextP>
             </div>
           ))}
         </div>
@@ -149,3 +151,4 @@ export default function BoardPage() {
     </>
   );
 }
+
