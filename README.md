@@ -1,4 +1,4 @@
-[![banner](./assets/landing.jpg)](https://youtu.be/oDCC7BvNqdI)
+![banner](./assets/landing.png)
 
 # Board Masters
 This is a simple multiplayer chess game.
