@@ -3,6 +3,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import { roomHandler } from './room';
+import { ApiService } from '@repo/rpc';
 
 const app = express();
 
@@ -23,7 +24,8 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  roomHandler(socket);
+  const gameService = new ApiService.game();
+  roomHandler(socket, gameService);
 
   socket.on('disconnect', () => {
     console.log('user disconnected');

@@ -11,6 +11,7 @@ export class GameService implements IGame {
 
   @logFn()
   movePiece(props: z.infer<typeof GameSchema.movePiece>): Promise<IGameReturnType['movePiece']> {
+    console.log("Moved a piece game service")
     throw new Error('Method not implemented.');
   }
 

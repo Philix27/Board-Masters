@@ -1,12 +1,15 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { Chess, Move, Piece, Square } from 'chess.js';
+import { useState } from 'react';
+import { Chess, Move, Square } from 'chess.js';
 import React from 'react';
 import { Navbar } from '../_comps';
 import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
 import { AppButton, TextP } from '@repo/ui';
-import { useSocket } from '@/app/lib/hooks/useSocket';
+import socketIO, { Socket } from 'socket.io-client';
+// import { SocketEvents } from '@repo/rpc';
+const WS_URL = 'ws://localhost:9400';
+const ws = socketIO(WS_URL);
 
 export default function BoardPage() {
   const chess = new Chess();
@@ -15,8 +18,6 @@ export default function BoardPage() {
   const [counter, setCounter] = useState(0);
   const [isGameStarted, setGameStarted] = useState(false);
   let timeoutId: NodeJS.Timeout;
-
-  const socket = useSocket();
 
   function makeAMove(
     move:
@@ -36,7 +37,7 @@ export default function BoardPage() {
       result = null;
     }
     setGame(gameCopy);
-    // null if the move was illegal, the move object if the move was legal
+
     return result;
   }
 
@@ -55,10 +56,11 @@ export default function BoardPage() {
     });
 
     if (move === null) return false;
-
+    console.log('Move is null');
     setGame(game);
 
     trackMoves(move);
+    console.log('Move track');
 
     startCounter();
 
@@ -83,13 +85,20 @@ export default function BoardPage() {
     if (isGameStarted) return;
 
     setGameStarted(true);
-    timeoutId = setInterval(() => {
+    setInterval(() => {
       setCounter((prev) => {
         return prev + 1;
       });
     }, 1000);
   }
 
+  // if (socket == null) {
+  //   return (
+  //     <div>
+  //       <p>Hero man</p>
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <Navbar title={'Board'} isBack />
@@ -100,9 +109,16 @@ export default function BoardPage() {
           <AppButton
             className="w-fit py-[1px]"
             onClick={() => {
-              if (timeoutId) {
-                clearInterval(timeoutId);
-              }
+              ws.emit('MOVE_PIECE', {
+                from: 'm1',
+                to: 'm2',
+                userAddress: '0x467372',
+              });
+              console.log('Emitted');
+              // emitter('MOVE_PIECE', {
+              //   from: 'm1',
+              //   to: 'm2',
+              // });
             }}
           >
             Stop
@@ -112,11 +128,7 @@ export default function BoardPage() {
           id={'ChessBoard'}
           // arePiecesDraggable={false}
           position={game.fen()}
-          onPieceDrop={(sorce, square, p) => {
-            onDrop(sorce, square);
-            console.log('Piece moved', p);
-            return true;
-          }}
+          onPieceDrop={onDrop}
           showBoardNotation={false}
           customBoardStyle={{ borderRadius: '5px', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)' }}
           customDarkSquareStyle={{ backgroundColor: '#58A181' }}
