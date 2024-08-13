@@ -170,6 +170,15 @@ export default function BoardPage() {
                 });
               },
             },
+            {
+              title: 'Chat',
+              isActive: store.movesView === 'CHAT',
+              onClick: () => {
+                store.update({
+                  movesView: 'CHAT',
+                });
+              },
+            },
           ]}
         />
         <BoardMoves gameMoves={gameMoves} />
