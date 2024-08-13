@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Navbar, ToggleSwitch } from "../_comps";
+import { Navbar, ToggleSwitch } from "@/comps";
 
 
 

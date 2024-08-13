@@ -1,17 +1,16 @@
-"use client"
-import React, { ReactNode } from "react";
+'use client';
+import React, { ReactNode } from 'react';
 
-// import { BottomNav } from "./_comps";
-import Drawer from "./_comps/drawer";
-import { AppStores } from "../lib";
+import { AppStores } from '../lib';
+import { BottomNav, Drawer } from '../comps';
 
 export default function PageLayout(props: { children: ReactNode }) {
   const store = AppStores.useSettingsStore();
 
   return (
-    <div className={"bg-background w-full"}>
+    <div className={'bg-background w-full'}>
       {props.children}
-      {/* <BottomNav /> */}
+      <BottomNav />
       {store.drawerIsOpen && <Drawer />}
     </div>
   );

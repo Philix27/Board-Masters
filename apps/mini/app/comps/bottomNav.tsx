@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { IconType } from "react-icons";
-import { IoHome, IoSwapHorizontal } from "react-icons/io5";
-import { cn } from "@repo/ui";
+import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { IconType } from 'react-icons';
+import { IoHome, IoSettings } from 'react-icons/io5';
+import { FaChess, FaCheckSquare, FaChessBoard } from 'react-icons/fa';
+import { cn } from '@repo/ui';
 
 export function BottomNav() {
   const router = useRouter();
@@ -40,15 +41,12 @@ export function BottomNav() {
                 `size-[40px] 
               flex flex-col items-center justify-center
               rounded-[10px]`,
-                isActive(link) ? "bg-background" : "bg-primary",
-                isActive(link) && "border-primary border-solid border-[1px]"
+                isActive(link) ? 'bg-background' : 'bg-primary',
+                isActive(link) && 'border-primary border-solid border-[1px]'
               )}
             >
               <Icon
-                className={cn(
-                  "text-primary-foreground",
-                  isActive(link) ? "text-primary" : "text-primary-foreground"
-                )}
+                className={cn('text-primary-foreground', isActive(link) ? 'text-primary' : 'text-primary-foreground')}
                 size={18}
               />
             </div>
@@ -60,18 +58,19 @@ export function BottomNav() {
 }
 const navItems: { title: string; Icon: IconType | IconType; link: string }[] = [
   {
-    title: "Gift",
-    link: "/",
-    Icon: IoHome,
+    title: 'chess',
+    link: '/chess/',
+    Icon: FaChess,
   },
-  // {
-  //   title: "Redeem",
-  //   link: "/redeem",
-  //   Icon: IoGift,
-  // },
+
   {
-    title: "P2P",
-    link: "/p2p",
-    Icon: IoSwapHorizontal,
+    title: 'checkers',
+    link: '/checkers/',
+    Icon: FaChessBoard,
+  },
+  {
+    title: 'Redeem',
+    link: '/redeem',
+    Icon: IoSettings,
   },
 ];

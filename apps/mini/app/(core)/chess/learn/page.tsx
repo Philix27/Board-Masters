@@ -1,6 +1,6 @@
 'use client';
 
-import { Navbar } from '../_comps';
+import { Navbar } from '@/comps';
 import React, { useState } from 'react';
 import { z } from 'zod';
 

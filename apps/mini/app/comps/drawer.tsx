@@ -9,7 +9,7 @@ import { IoPerson, IoSettings } from 'react-icons/io5';
 import { useTheme } from 'next-themes';
 import { MdNightlight, MdOutlineLightMode } from 'react-icons/md';
 
-export default function Drawer() {
+export function Drawer() {
   const store = AppStores.useSettingsStore();
   const router = useRouter();
   const { setTheme, theme } = useTheme();

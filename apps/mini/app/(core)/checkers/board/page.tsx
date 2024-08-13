@@ -2,14 +2,13 @@
 import { useState } from 'react';
 import { Chess, Move, Square } from 'chess.js';
 import React from 'react';
-import { Navbar } from '../_comps';
+import { Navbar, Tabs } from '@/comps';
 import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
 import { AppButton, TextP } from '@repo/ui';
 import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { AppStores } from '@/app/lib';
-import { Tabs } from '../_comps/Tabs';
 import { BoardMoves, IBoardMoves } from './Moves';
 // import { SocketEvents } from '@repo/rpc';
 const WS_URL = 'ws://localhost:9400';

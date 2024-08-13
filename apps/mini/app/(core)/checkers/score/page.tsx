@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Navbar, Tabs } from '../_comps';
+import { Navbar, Tabs } from '@/comps';
 import { TextP } from '@repo/ui';
 import { AppStores } from '@/lib';
 
