@@ -1,3 +1,4 @@
+'use client';
 import { AppStores } from '@/app/lib';
 import { cn, TextP } from '@repo/ui';
 

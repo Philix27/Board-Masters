@@ -3,33 +3,21 @@ import { cn, TextH, TextP } from '@repo/ui';
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import { Navbar } from '@/comps';
+import { DashboardItems, Navbar, IDashboard } from '@/comps';
 import { MdScoreboard } from 'react-icons/md';
 import { AppImg } from '@/lib';
 
 export function HomePage() {
   return (
     <>
-      <Navbar title={'Chess Game'} icon={MdScoreboard} onIconClick={() => {}} />
+      <Navbar title={'Checkers'} icon={MdScoreboard} onIconClick={() => {}} />
 
-      <div className="grid grid-cols-2 gap-x-3 gap-y-2 px-6 py-4 mt-[50px]">
-        {dashboardItems.map((val, i) => (
-          <Link href={val.link}>
-            {/* <div key={i} className={cn(`px-3 py-1 rounded-md border border-primary`)}> */}
-            <div key={i} className={cn(`px-3 py-1 rounded-md`, val.color)}>
-              <TextH className={'tracking-wide text-white'}>{val.title}</TextH>
-              <TextP className="mb-4 text-white">{val.subTitle}</TextP>
-
-              <img src={val.img} className={`w-fit h-[100px]`} alt={val.title} />
-            </div>
-          </Link>
-        ))}
-      </div>
+      <DashboardItems data={dashboardItems} />
     </>
   );
 }
 
-const dashboardItems: { title: string; subTitle: string; link: string; color: string; img: string }[] = [
+const dashboardItems: IDashboard[] = [
   {
     title: 'Play now',
     link: '/board',
@@ -58,13 +46,7 @@ const dashboardItems: { title: string; subTitle: string; link: string; color: st
     color: 'bg-red-300',
     img: AppImg.icons.phoneShake,
   },
-  // {
-  //   title: 'Puzzle',
-  //   link: '/puzzle',
-  //   subTitle: 'Take exercies and purples',
-  //   color: 'bg-pink-600',
-  //   img: AppImg.icons.puzzle,
-  // },
+
   {
     title: 'Learn',
     link: '/learn',
@@ -72,11 +54,11 @@ const dashboardItems: { title: string; subTitle: string; link: string; color: st
     color: 'bg-purple-700',
     img: AppImg.icons.edu,
   },
-  // {
-  //   title: 'Watch',
-  //   link: '/watch',
-  //   subTitle: 'Learn chess with a simple walkthrough courses',
-  //   color: 'bg-lime-700',
-  //   img: AppImg.icons.blackVideo,
-  // },
+  {
+    title: 'Watch',
+    link: '/watch',
+    subTitle: 'Learn chess with a simple walkthrough courses',
+    color: 'bg-lime-700',
+    img: AppImg.icons.blackVideo,
+  },
 ];

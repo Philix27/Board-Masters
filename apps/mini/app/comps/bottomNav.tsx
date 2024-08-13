@@ -59,18 +59,17 @@ export function BottomNav() {
 const navItems: { title: string; Icon: IconType | IconType; link: string }[] = [
   {
     title: 'chess',
-    link: '/chess/',
+    link: '/chess',
     Icon: FaChess,
   },
-
   {
     title: 'checkers',
-    link: '/checkers/',
+    link: '/checkers',
     Icon: FaChessBoard,
   },
   {
-    title: 'Redeem',
-    link: '/redeem',
+    title: 'Settings',
+    link: '/settings',
     Icon: IoSettings,
   },
 ];
