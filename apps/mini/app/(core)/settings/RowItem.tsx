@@ -1,5 +1,6 @@
-import { TextH, TextP } from "@repo/ui";
-import { IconType } from "react-icons";
+'use client'
+import { TextH, TextP } from '@repo/ui';
+import { IconType } from 'react-icons';
 
 export function SettingsItem(props: { title: string; endTitle: string; icon: IconType }) {
   const Icon = props.icon;

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { SettingsItem } from './RowItem';
 import { TbScoreboard } from 'react-icons/tb';

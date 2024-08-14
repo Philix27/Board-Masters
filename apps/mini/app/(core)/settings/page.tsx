@@ -8,6 +8,7 @@ import { LiaAddressBookSolid, LiaWalletSolid } from 'react-icons/lia';
 import { LiaCoinsSolid } from 'react-icons/lia';
 import { ChessSettings } from './Chess';
 import { ProfileSettings } from './Profile';
+import Avatar from 'avataaars';
 
 export default function SettingsPage() {
   const store = AppStores.useSettingsStore();
@@ -16,7 +17,21 @@ export default function SettingsPage() {
       <Navbar title={'Settings'} />
 
       <div className="w-full flex items-center justify-center px-6">
-        <img src="/icons/profile.png" className="w-[150px]" />
+        {/* <img src="/icons/profile.png" className="w-[150px]" /> */}
+        <Avatar
+          avatarStyle="Transparent"
+          topType="ShortHairDreads02"
+          accessoriesType="Round"
+          hairColor="Black"
+          facialHairType="Blank"
+          clotheType="Hoodie"
+          clotheColor="Black"
+          eyeType="Default"
+          eyebrowType="Default"
+          mouthType="Serious"
+          skinColor="Brown"
+          className='h-[100px] my-4'
+        />
       </div>
       <div className="px-4">
         <Tabs
