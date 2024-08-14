@@ -270,28 +270,7 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
-  packages/eslint-config:
-    devDependencies:
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.1.0
-        version: 8.1.0(@typescript-eslint/parser@8.1.0)(eslint@8.57.0)(typescript@5.5.4)
-      '@typescript-eslint/parser':
-        specifier: ^8.1.0
-        version: 8.1.0(eslint@8.57.0)(typescript@5.5.4)
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.0)
-      eslint-config-turbo:
-        specifier: ^2.0.13
-        version: 2.0.13(eslint@8.57.0)
-      eslint-plugin-only-warn:
-        specifier: ^1.1.0
-        version: 1.1.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.5.4
-
-  packages/rpc:
+  packages/core:
     dependencies:
       '@neondatabase/serverless':
         specifier: ^0.9.3
@@ -320,6 +299,43 @@ importers:
       zod-express-middleware:
         specifier: ^1.4.0
         version: 1.4.0(@types/express@4.17.21)(express@4.19.2)(zod@3.23.8)
+    devDependencies:
+      drizzle-kit:
+        specifier: ^0.22.7
+        version: 0.22.8
+
+  packages/eslint-config:
+    devDependencies:
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.1.0
+        version: 8.1.0(@typescript-eslint/parser@8.1.0)(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/parser':
+        specifier: ^8.1.0
+        version: 8.1.0(eslint@8.57.0)(typescript@5.5.4)
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.0)
+      eslint-config-turbo:
+        specifier: ^2.0.13
+        version: 2.0.13(eslint@8.57.0)
+      eslint-plugin-only-warn:
+        specifier: ^1.1.0
+        version: 1.1.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.5.4
+
+  packages/rpc:
+    dependencies:
+      axios:
+        specifier: 1.7.2
+        version: 1.7.2
+      ethers:
+        specifier: ^6.12.1
+        version: 6.13.2
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       drizzle-kit:
         specifier: ^0.22.7
@@ -4399,7 +4415,7 @@ packages:
   /@types/pg@8.11.6:
     resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
     dependencies:
-      '@types/node': 20.14.14
+      '@types/node': 22.3.0
       pg-protocol: 1.6.1
       pg-types: 4.0.2
     dev: false
@@ -4428,7 +4444,7 @@ packages:
   /@types/secp256k1@4.0.6:
     resolution: {integrity: sha512-hHxJU6PAEUn0TP4S/ZOzuTUvJWuZ6eIKeNKb5RBpODvSl6hp1Wrw4s7ATY50rklRCScUDpHzVA/DQdSjJ3UoYQ==}
     dependencies:
-      '@types/node': 20.14.14
+      '@types/node': 22.3.0
     dev: false
 
   /@types/send@0.17.4:
@@ -4473,7 +4489,7 @@ packages:
   /@types/ws@8.5.12:
     resolution: {integrity: sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==}
     dependencies:
-      '@types/node': 20.14.14
+      '@types/node': 22.3.0
     dev: true
 
   /@types/yargs-parser@21.0.3:
