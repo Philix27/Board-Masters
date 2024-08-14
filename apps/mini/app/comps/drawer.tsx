@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { IconType } from 'react-icons';
-import { IoPerson, IoSettings } from 'react-icons/io5';
 import { useTheme } from 'next-themes';
-import { MdNightlight, MdOutlineLightMode } from 'react-icons/md';
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import { GoPerson } from 'react-icons/go';
+import { IoColorPaletteOutline } from 'react-icons/io5';
 
 export function Drawer() {
   const store = AppStores.useSettingsStore();
@@ -25,21 +26,21 @@ export function Drawer() {
         <div className="px-4 mt-[50px]">
           <DrawerRow
             title={'Profile'}
-            icon={IoPerson}
-            onClick={() => {
-              router.push('/account');
-            }}
-          />
-          <DrawerRow
-            title={'Settings'}
-            icon={IoSettings}
+            icon={GoPerson}
             onClick={() => {
               router.push('/settings');
             }}
           />
           <DrawerRow
+            title={'Notifications'}
+            icon={IoIosNotificationsOutline}
+            onClick={() => {
+              router.push('/notify');
+            }}
+          />
+          <DrawerRow
             title={'Theme'}
-            icon={theme === 'light' ? MdNightlight : MdOutlineLightMode}
+            icon={IoColorPaletteOutline}
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           />
         </div>
@@ -58,7 +59,7 @@ function DrawerRow(props: { title: string; icon?: IconType; onClick?: VoidFuncti
   const Icon = props.icon!;
   return (
     <div className="w-full flex items-center py-2 border-b-[0.3px]" onClick={props.onClick}>
-      {props.icon && <Icon className="mr-4" />}
+      {props.icon && <Icon className="mr-4" size={20} />}
       <TextP className={'font-bold'}>{props.title}</TextP>
     </div>
   );

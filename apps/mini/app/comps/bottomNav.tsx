@@ -3,9 +3,12 @@
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { IconType } from 'react-icons';
-import { IoHome, IoSettings } from 'react-icons/io5';
-import { FaChess, FaCheckSquare, FaChessBoard } from 'react-icons/fa';
+import { BiSolidChess } from 'react-icons/bi';
+import { FaChess, FaChessBoard } from 'react-icons/fa';
+import { MdOutlineSettings } from 'react-icons/md';
+import { FaRegChessKing } from 'react-icons/fa6';
 import { cn } from '@repo/ui';
+
 
 export function BottomNav() {
   const router = useRouter();
@@ -60,16 +63,16 @@ const navItems: { title: string; Icon: IconType | IconType; link: string }[] = [
   {
     title: 'chess',
     link: '/chess',
-    Icon: FaChess,
+    Icon: FaRegChessKing,
   },
   {
     title: 'checkers',
     link: '/checkers',
-    Icon: FaChessBoard,
+    Icon: BiSolidChess,
   },
   {
     title: 'Settings',
     link: '/settings',
-    Icon: IoSettings,
+    Icon: MdOutlineSettings,
   },
 ];

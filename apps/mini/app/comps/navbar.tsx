@@ -44,7 +44,7 @@ export function Navbar(props: {
           </h1>
         )} */}
       </div>
-      <TextP v="p4" className="text-card-foreground my-0">
+      <TextP v="p4" className="text-card-foreground my-0 font-bold tracking-wide">
         {props.title}
       </TextP>
       <div className="flex items-center gap-x-3">

@@ -1,6 +1,7 @@
 import { AppStores } from '@/lib';
 import { TextP } from '@repo/ui';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
+import { ChatSection } from './Chat';
 
 export type IBoardMoves = { from: string; to: string; piece: Piece };
 export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
@@ -42,6 +43,7 @@ export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
               <TextP>{m.to}</TextP>
             </div>
           ))}
+      {store.movesView === 'CHAT' && <ChatSection />}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export function DashboardItems(props: { data: IDashboard[] }) {
         <Link href={val.link}>
           {/* <div key={i} className={cn(`px-3 py-1 rounded-md border border-primary`)}> */}
           <div key={i} className={cn(`px-3 py-2 rounded-md bg-card border flex flex-col items-center justify-center`)}>
-            <TextH className={'tracking-wide text-white my-1'}>{val.title}</TextH>
+            <TextH className={'tracking-wide text-card-foreground my-1'}>{val.title}</TextH>
             <hr className="border border-primary w-full" />
             <TextP className="mb-4 text-slate-500 text-sm text-center">{val.subTitle}</TextP>
             <FaChess size={40} className="mb-2 text-primary" />
