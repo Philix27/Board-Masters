@@ -8,7 +8,7 @@ export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
   const store = AppStores.useSettingsStore();
 
   return (
-    <div className="mt-1">
+    <div className="mt-1 h-[65vh] overflow-scroll mb-[60px]">
       {store.movesView === 'FULL' &&
         props.gameMoves.map((m, i) => (
           <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
