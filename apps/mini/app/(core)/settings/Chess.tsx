@@ -3,7 +3,7 @@ import React from 'react';
 import { SettingsItem } from './RowItem';
 import { TbScoreboard } from 'react-icons/tb';
 import { TbMoodHappy } from 'react-icons/tb';
-import { IoSadOutline } from 'react-icons/io5';
+import { IoColorPaletteOutline, IoSadOutline } from 'react-icons/io5';
 import { TbTie } from 'react-icons/tb';
 
 export function ChessSettings() {
@@ -13,6 +13,7 @@ export function ChessSettings() {
       <SettingsItem title={'Wins'} endTitle={'0.00'} icon={TbMoodHappy} />
       <SettingsItem title={'Loss'} endTitle={'0.00'} icon={IoSadOutline} />
       <SettingsItem title={'Draw'} endTitle={'0.00'} icon={TbTie} />
+      <SettingsItem title={'Board Theme'} endTitle={'Blue'} icon={IoColorPaletteOutline} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { SettingsItem } from './RowItem';
 import { LiaWalletSolid, LiaCoinsSolid, LiaAddressBookSolid } from 'react-icons/lia';
 import { TbLibraryPhoto } from 'react-icons/tb';
@@ -11,6 +11,7 @@ import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 export function ProfileSettings() {
   const c = Flags.NA;
+  const [isLoud, setIsLoud] = useState();
   return (
     <div>
       <SettingsItem title={'Philix27'} endTitle={'change'} icon={IoPersonOutline} />

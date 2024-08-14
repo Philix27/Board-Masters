@@ -1,11 +1,12 @@
 'use client';
-import { cn, TextH, TextP } from '@repo/ui';
-import Link from 'next/link';
-import Image from 'next/image';
 import React from 'react';
 import { DashboardItems, Navbar, IDashboard } from '@/comps';
 import { MdScoreboard } from 'react-icons/md';
-import { AppImg } from '@/lib';
+import { GrScorecard } from 'react-icons/gr';
+import { LiaUserFriendsSolid } from 'react-icons/lia';
+import { LuDisc2 } from 'react-icons/lu';
+import { RiRobot3Line } from 'react-icons/ri';
+import { CiVideoOn } from 'react-icons/ci';
 
 export function HomePage() {
   return (
@@ -23,42 +24,34 @@ const dashboardItems: IDashboard[] = [
     link: '/board',
     subTitle: 'Stake and play with random opponents',
     color: 'bg-cyan-600',
-    img: AppImg.icons.multiplayer,
+    icon: LuDisc2,
   },
   {
     title: 'Score Board',
     link: '/score',
     subTitle: 'View your past scores and leaderboard',
     color: 'bg-orange-600',
-    img: AppImg.icons.note,
+    icon: GrScorecard,
   },
   {
     title: 'Bot',
     link: '/bot',
     subTitle: 'Play with AI',
     color: 'bg-teal-500',
-    img: AppImg.icons.robo,
+    icon: RiRobot3Line,
   },
   {
     title: 'Play Friend',
     link: '/board',
     subTitle: 'Invite a friend to play with',
     color: 'bg-red-300',
-    img: AppImg.icons.phoneShake,
-  },
-
-  {
-    title: 'Learn',
-    link: '/learn',
-    subTitle: 'Learn chess with a simple walkthrough courses',
-    color: 'bg-purple-700',
-    img: AppImg.icons.edu,
+    icon: LiaUserFriendsSolid,
   },
   {
     title: 'Watch',
     link: '/watch',
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-lime-700',
-    img: AppImg.icons.blackVideo,
+    icon: CiVideoOn,
   },
 ];

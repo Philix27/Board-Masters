@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { DashboardItems, IDashboard, Navbar } from '@/comps';
-import { MdScoreboard } from 'react-icons/md';
-import { AppImg } from '@/lib';
+import { MdCastForEducation, MdScoreboard } from 'react-icons/md';
+import { FaChess } from 'react-icons/fa';
+import { LiaChessBishopSolid, LiaChessKnightSolid, LiaChessQueenSolid } from 'react-icons/lia';
 
 export function HomePage() {
   return (
@@ -21,48 +22,34 @@ const dashboardItems: IDashboard[] = [
     link: '/chess/board',
     subTitle: 'Stake and play with random opponents',
     color: 'bg-cyan-600',
-    img: AppImg.icons.multiplayer,
+    icon: FaChess,
   },
   {
     title: 'Score Board',
     link: '/chess/score',
     subTitle: 'View your past scores and leaderboard',
     color: 'bg-orange-600',
-    img: AppImg.icons.note,
+    icon: LiaChessKnightSolid,
   },
   {
     title: 'Bot',
     link: '/chess/bot',
     subTitle: 'Play with AI',
     color: 'bg-teal-500',
-    img: AppImg.icons.robo,
+    icon: LiaChessQueenSolid,
   },
   {
     title: 'Play Friend',
     link: '/chess/board',
     subTitle: 'Invite a friend to play with',
     color: 'bg-red-300',
-    img: AppImg.icons.phoneShake,
+    icon: LiaChessBishopSolid,
   },
-  // {
-  //   title: 'Puzzle',
-  //   link: '/chess/puzzle',
-  //   subTitle: 'Take exercies and purples',
-  //   color: 'bg-pink-600',
-  //   img: AppImg.icons.puzzle,
-  // },
   {
     title: 'Learn',
     link: '/chess/learn',
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-purple-700',
-    img: AppImg.icons.edu,
+    icon: MdCastForEducation,
   },
-  // {
-  //   title: 'Watch',
-  //   link: '/chess/watch',
-  //   subTitle: 'Learn chess with a simple walkthrough courses',
-  //   color: 'bg-lime-700',
-  //   img: AppImg.icons.blackVideo,
-  // },
 ];

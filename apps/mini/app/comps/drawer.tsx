@@ -9,6 +9,7 @@ import { useTheme } from 'next-themes';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { GoPerson } from 'react-icons/go';
 import { IoColorPaletteOutline } from 'react-icons/io5';
+import { PiSpeakerHighThin, PiSpeakerSimpleXLight } from 'react-icons/pi';
 
 export function Drawer() {
   const store = AppStores.useSettingsStore();
@@ -42,6 +43,11 @@ export function Drawer() {
             title={'Theme'}
             icon={IoColorPaletteOutline}
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          />
+          <DrawerRow
+            title={'Sound'}
+            icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
+            onClick={() => store.update({ isLoud: !store.isLoud })}
           />
         </div>
       </motion.div>
