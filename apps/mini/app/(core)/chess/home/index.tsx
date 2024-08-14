@@ -8,7 +8,7 @@ import { AppImg } from '@/lib';
 export function HomePage() {
   return (
     <>
-      <Navbar title={'Chess Game'} icon={MdScoreboard} onIconClick={() => {}} />
+      <Navbar title={'Chess'} icon={MdScoreboard} onIconClick={() => {}} />
 
       <DashboardItems data={dashboardItems} />
     </>
