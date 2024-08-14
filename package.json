@@ -7,18 +7,17 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky",
     "dev:mini": "turbo run dev --filter=mini",
     "dev:wss": "turbo run dev --filter=wss",
     "dev:server": "turbo run dev --filter=server",
-    "build:mini": "turbo run build --filter=mini"
+    "build:mini": "turbo run build --filter=mini",
+    "install:mini": "turbo run install --filter=mini"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "turbo": "^2.0.6",
@@ -31,11 +30,6 @@
     "apps/*",
     "packages/*"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "packageManager": "pnpm@8.15.6",
   "lint-staged": {
     "**/*.{ts,tsx,md}": [
