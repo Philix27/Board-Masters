@@ -15,10 +15,7 @@
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "../../../phlearn/app/comps/cn.ts",
-    "../../../phlearn/app/comps/TextH.tsx",
-    "../../../phlearn/app/comps/TextP.tsx"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
