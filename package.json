@@ -4,14 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo lint:fix",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "dev:mini": "turbo run dev --filter=mini",
-    "dev:wss": "turbo run dev --filter=wss",
-    "dev:server": "turbo run dev --filter=server",
-    "build:mini": "turbo run build --filter=mini",
-    "install:mini": "turbo run install --filter=mini"
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^3.2.5",
