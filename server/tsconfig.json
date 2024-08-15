@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsxImportSource": "hono/jsx",
+    "paths": {
+      "@server/*": ["./*"]
+    }
+  }
+}
