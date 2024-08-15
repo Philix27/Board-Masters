@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import OtpInput from "react-otp-input"
 
-import { TextB } from "../custom"
+import { TextP } from "../custom"
 
 export function AppOtpInput(props: {
   otp: string
@@ -32,7 +32,7 @@ export function AppOtpInput(props: {
       />
       {props.hasError && (
         <div className="my-2 ">
-          <TextB className="text-red-500">Invalid</TextB>
+          <TextP className="text-red-500">Invalid</TextP>
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { AppPages } from "../../../lib";
+import { AppPages } from '../../../lib';
 
 export interface MainNavProps {
   title: string;
@@ -15,7 +15,6 @@ export interface NavItem {
 }
 
 export const MarketingNavItems: NavItem[] = [
-  { title: "Solutions", href: AppPages.solutions },
-  { title: "Blogs", href: AppPages.blogs },
-  { title: "FAQ", href: AppPages.faq },
+  { title: 'Blogs', href: AppPages.blogs },
+  { title: 'FAQ', href: AppPages.faq },
 ];

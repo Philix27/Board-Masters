@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { CardsSection, HeroSection, HeroCenter, JumbutronSection, HeroWithImg } from '../_comps';
+import { CardsSection, HeroSection, JumbutronSection, HeroWithImg } from '../_comps';
 import { AppImg } from '../../lib';
 import { TextH } from '@/comps';
 import { cardData } from './cards';

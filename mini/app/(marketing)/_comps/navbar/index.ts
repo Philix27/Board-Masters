@@ -1,2 +1,2 @@
-export * from "./mainNav"
-export * from "./site"
+export * from './nav';
+export * from './site';

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { MainNavProps } from './site';
-import { TextH, TextP } from '@/comps';
+import { AppButton, TextH, TextP } from '@/comps';
 import MobileSidebar from '../sidebar';
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
@@ -33,14 +33,12 @@ export function NavbarMarketing(props: MainNavProps) {
                 href={v.href || '/#'}
                 className={`hover:bg-accent p-2 rounded-md hover:[&>p]:text-primary-foreground`}
               >
-                <TextP v="p6" className={'text-primary'}>
-                  {v.title}
-                </TextP>
+                <TextP className={'text-primary'}>{v.title}</TextP>
               </Link>
             ))}
-            <button className="px-4" onClick={() => router.push(AppPages.auth.signIn)}>
-              Buy Now
-            </button>
+            <AppButton className="px-4" onClick={() => router.push(AppPages.chess.chess)}>
+              Play now
+            </AppButton>
             {/* <AppButton className="px-4" onClick={() => router.push(AppPages.auth.signIn)}>
               Buy Now
             </AppButton> */}

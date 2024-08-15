@@ -1,4 +1,4 @@
-import { HomeSection } from './(marketing)/home';
+import { HomeSection } from './home';
 
 export default function Home() {
   return <HomeSection />;
