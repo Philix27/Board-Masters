@@ -9,7 +9,7 @@ import { LiaChessBishopSolid, LiaChessKnightSolid, LiaChessQueenSolid } from 're
 export function HomePage() {
   return (
     <>
-      <Navbar title={'Chess'} icon={MdScoreboard} onIconClick={() => {}} />
+      <Navbar title={'Chess'} />
 
       <DashboardItems data={dashboardItems} />
     </>
