@@ -16,17 +16,19 @@ export function HomeSection() {
           <span className="text-primary"> Receive</span> Crypto and Fiat to family and friends.
         </TextH>
       </HeroWithImg>
-      <HeroSection
-        img={AppImg.chain}
-        title={'Our Mission'}
-        subtitle={`Our mission is to provide our clients with a 
+      <div className='hidden md:block'>
+        <HeroSection
+          img={AppImg.chain}
+          title={'Our Mission'}
+          subtitle={`Our mission is to provide our clients with a 
           transformative and user-friendly platform for savings 
           and financial empowerment. We are committed to 
           offering a seamless way for individuals to 
           save a fixed amount of their salary every month, 
           fostering a culture of disciplined saving
           and financial responsibility.`}
-      />
+        />
+      </div>
       <JumbutronSection
         title={'Our core offerings'}
         subtitle="There are many variations of passages of 
@@ -34,27 +36,6 @@ export function HomeSection() {
           majority have suffered alteration in some form."
       />
 
-      <HeroSection
-        imgFirst
-        img={AppImg.invoice}
-        title={'Our vision'}
-        subtitle={`Our vision far extends beyond 
-          traditional savings models, aiming to 
-          eradicate the excuses commonly associated 
-          with Adashi/Ajo and provide clients with 
-          a seamless and flexible way to save. Through 
-          this product, we envision a future where financial 
-          stability is within reach for all, where individuals have the opportunity 
-          to grow their savings and access low interest loans with ease.`}
-      />
-      <JumbutronSection
-        title={'Access to Funds'}
-        subtitle={`We are dedicated to ensuring that our 
-          clients have access to their 
-          funds as at when needed,
-          providing them with financial
-          flexibility and peace of mind`}
-      />
       <CardsSection data={cardData} />
     </div>
   );

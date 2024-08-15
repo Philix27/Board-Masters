@@ -21,22 +21,6 @@ export function FooterSection() {
       `}
       >
         <Section
-          title={'Company'}
-          list={[
-            { title: 'About Us', link: AppPages.aboutUs },
-            { title: 'Blogs', link: AppPages.blogs },
-            { title: 'Terms of Service', link: AppPages.termsCondition },
-            { title: 'Privacy Policy', link: AppPages.privacyPolicy },
-          ]}
-        />
-        <Section
-          title={'Solutions'}
-          list={[
-            { title: 'Gift cards', link: AppPages.solutions },
-            { title: 'Swap', link: '#' },
-          ]}
-        />
-        <Section
           title={'Support'}
           list={[
             { title: 'FAQ', link: AppPages.faq },
@@ -63,11 +47,13 @@ function Section(props: { title: string; list: { title: string; link: string }[]
       <TextH v="h4" className={'font-bold text-primary-foreground'}>
         {props.title}
       </TextH>
-      {props.list.map((val, i) => (
-        <Link href={val.link} key={i}>
-          <TextP>{val.title}</TextP>
-        </Link>
-      ))}
+      <div className='flex space-x-2'>
+        {props.list.map((val, i) => (
+          <Link href={val.link} key={i}>
+            <TextP>{val.title}</TextP>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
