@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'lucide-react';
 
-import { TextP, TextH } from './comps';
+import { TextP, TextH, AppButton } from './comps';
 
 export default function PageError() {
   return (
@@ -11,7 +11,9 @@ export default function PageError() {
       <div className="flex flex-col items-center">
         <TextH className="mb-4">Not Found</TextH>
         <TextP className="mb-4"> Could not find requested resource</TextP>
-        <Link href="/">{/* <Button>Return Home</Button> */}Home</Link>
+        <Link href="/">
+          <AppButton>Return Home</AppButton>
+        </Link>
       </div>
     </div>
   );
