@@ -17,7 +17,7 @@ export function NavbarMarketing(props: MainNavProps) {
     <header className="bg-card sticky top-0 z-20 w-full border-b">
       <div className="container flex h-[60px] items-center justify-between">
         <div className="flex gap-6 md:gap-10 ">
-          <img src={'/logoBlue.png'} className="size-[35px] rounded-[17.5px]" />
+          {/* <img src={'/logoBlue.png'} className="size-[35px] rounded-[17.5px]" /> */}
           <Link href="/" className="items-center space-x-2">
             <TextH v="h3" className={'text-primary font-extrabold tracking-wider'}>
               {props.title}

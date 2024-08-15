@@ -5,9 +5,11 @@ import { FooterSection } from "./_comps";
 export default function MarketingLayout(props: { children: ReactNode }) {
   return (
     <div className="h-screen ">
-      <NavbarMarketing title={"Chesker"} items={MarketingNavItems} />
+      <NavbarMarketing title={'BM'} items={MarketingNavItems} />
       <div className="min-h-[calc(100vh-250px)]">{props.children}</div>
-      <FooterSection />
+      <div className="hidden md:block">
+        <FooterSection />
+      </div>
     </div>
   );
 }
