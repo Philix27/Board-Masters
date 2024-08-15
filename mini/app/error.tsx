@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'lucide-react';
 
 import { TextP, TextH, AppButton } from './comps';
+import Link from 'next/link';
 
 export default function PageError() {
   return (

@@ -8,10 +8,15 @@ import { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { AppPages } from '../../../lib';
+import { useAccount, useConnect } from 'wagmi';
+import { injected } from 'wagmi/connectors';
 
 export function NavbarMarketing(props: MainNavProps) {
   const [showNav, setShowNav] = useState(false);
   const router = useRouter();
+  const { address } = useAccount();
+  const { isConnected } = useAccount();
+  const { connectors, connect } = useConnect();
 
   return (
     <header className="bg-card sticky top-0 z-20 w-full border-b">
@@ -36,9 +41,17 @@ export function NavbarMarketing(props: MainNavProps) {
                 <TextP className={'text-primary'}>{v.title}</TextP>
               </Link>
             ))}
-            <AppButton className="px-4" onClick={() => router.push(AppPages.chess.chess)}>
-              Play now
-            </AppButton>
+
+            {isConnected ? (
+              <AppButton className="px-4" onClick={() => router.push(AppPages.chess.chess)}>
+                Play now
+              </AppButton>
+            ) : (
+              <AppButton className="px-4" onClick={() => connect({ connector: injected() })}>
+                Connect
+              </AppButton>
+            )}
+
             {/* <AppButton className="px-4" onClick={() => router.push(AppPages.auth.signIn)}>
               Buy Now
             </AppButton> */}

@@ -3,11 +3,17 @@
 import React from 'react';
 
 import { CardsSection, HeroSection, JumbutronSection, HeroWithImg } from '../_comps';
-import { AppImg } from '../../lib';
+import { AppImg, AppPages } from '@/lib';
 import { AppButton, TextH } from '@/comps';
 import { cardData } from './cards';
+import { useAccount, useConnect, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi';
+import { useRouter } from 'next/navigation';
+import { injected } from 'wagmi/connectors';
 
 export function HomeSection() {
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect();
+  const router = useRouter();
   return (
     <div>
       <HeroWithImg img={'/fx1.png'}>
@@ -16,8 +22,21 @@ export function HomeSection() {
           <span className="text-primary"> Checkers</span>
         </TextH>
       </HeroWithImg>
-      <div className="md:hidden my-5 flex items-center justify-center">
-        <AppButton className="w-fit">Play now</AppButton>
+      <div className="md:hidden my-5 flex flex-col items-center justify-center">
+        {isConnected ? (
+          <AppButton
+            className="w-fit"
+            onClick={() => {
+              router.push(AppPages.chess.chess);
+            }}
+          >
+            Play now
+          </AppButton>
+        ) : (
+          <AppButton className="w-fit" onClick={() => connect({ connector: injected() })}>
+           Connect
+          </AppButton>
+        )}
       </div>
       <div className="hidden md:block">
         <HeroSection img={AppImg.chain} title={'Play chess with friends a'} subtitle={``} />

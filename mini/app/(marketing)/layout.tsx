@@ -1,3 +1,4 @@
+"use client"
 import React, { ReactNode } from "react";
 import { MarketingNavItems, NavbarMarketing } from "./_comps/navbar";
 import { FooterSection } from "./_comps";
