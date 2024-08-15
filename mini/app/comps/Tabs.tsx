@@ -1,6 +1,6 @@
 'use client';
-import { AppStores } from '@/app/lib';
-import { cn, TextP } from '@repo/ui';
+import { AppStores, cn } from '@/lib';
+import { TextP } from '@/comps';
 
 export function Tabs(props: { data: { title: string; isActive: boolean; onClick: VoidFunction }[] }) {
   const store = AppStores.useSettingsStore();

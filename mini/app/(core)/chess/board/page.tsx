@@ -5,7 +5,7 @@ import React from 'react';
 import { Navbar, Tabs } from '@/comps';
 import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
-import { AppButton, TextP } from '@repo/ui';
+import { TextP } from '@/comps';
 import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { AppStores } from '@/lib';

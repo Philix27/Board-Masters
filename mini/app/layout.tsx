@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { AppProviders, fontSans } from "./lib";
-import { cn } from "@repo/ui";
+import type { Metadata } from 'next';
+import './globals.css';
+import { AppProviders, fontSans, cn } from './lib';
 
 export const metadata: Metadata = {
-  title: "Chess",
-  description: "An easy to use off-ramping platform",
+  title: 'Chess',
+  description: 'An easy to use off-ramping platform',
 };
 
 export default function RootLayout({

@@ -1,10 +1,8 @@
-"use client";
-
-import { AppImg } from "../../lib";
+import { AppImg } from '@/lib';
 
 export const cardData = [
   {
-    title: "Flexible Savings Options",
+    title: 'Flexible Savings Options',
     img: AppImg.pay.pay1,
     subtitle: `
       We aim to provide clients with flexible ways to save,
@@ -13,14 +11,14 @@ export const cardData = [
     `,
   },
   {
-    title: "Low-Interest Loans",
+    title: 'Low-Interest Loans',
     img: AppImg.pay.pay4,
     subtitle: `Through our platform, we strive to offer clients 
       low-interest rate loans, enabling
       them to access credit responsibly and affordably.`,
   },
   {
-    title: "Utility Bill Payments",
+    title: 'Utility Bill Payments',
     img: AppImg.pay.pay5,
     subtitle: `In addition to savings and loans, 
     we also offer the convenience of utility

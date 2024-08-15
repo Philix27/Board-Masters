@@ -1,15 +1,11 @@
-"use client";
+'use client';
 
-import { cn } from "@repo/ui";
-import React, { ReactNode } from "react";
+import { cn } from '@/lib';
+import React, { ReactNode } from 'react';
 
-export function HeroWithImg(props: {
-  children: ReactNode;
-  img: string;
-  className?: string;
-}) {
+export function HeroWithImg(props: { children: ReactNode; img: string; className?: string }) {
   return (
-    <section className={cn("w-full md:py-0 py-5", props.className)}>
+    <section className={cn('w-full md:py-0 py-5', props.className)}>
       <div
         className={`md:w-[80%] container
         md:min-h-[70vh] w-full 

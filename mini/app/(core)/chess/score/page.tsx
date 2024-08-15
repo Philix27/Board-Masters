@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Navbar, Tabs } from '@/comps';
-import { TextP } from '@repo/ui';
+import { TextP } from '@/comps';
 import { AppStores } from '@/lib';
 
 export default function ScoreBoardPage() {

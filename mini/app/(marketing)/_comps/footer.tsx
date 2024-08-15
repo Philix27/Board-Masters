@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { TextH, TextP } from "@repo/ui";
-import Link from "next/link";
-import { AppPages } from "../../lib";
+import React from 'react';
+import { TextH, TextP } from '@/comps';
+import Link from 'next/link';
+import { AppPages } from '../../lib';
 
 export function FooterSection() {
   return (
@@ -21,35 +21,35 @@ export function FooterSection() {
       `}
       >
         <Section
-          title={"Company"}
+          title={'Company'}
           list={[
-            { title: "About Us", link: AppPages.aboutUs },
-            { title: "Blogs", link: AppPages.blogs },
-            { title: "Terms of Service", link: AppPages.termsCondition },
-            { title: "Privacy Policy", link: AppPages.privacyPolicy },
+            { title: 'About Us', link: AppPages.aboutUs },
+            { title: 'Blogs', link: AppPages.blogs },
+            { title: 'Terms of Service', link: AppPages.termsCondition },
+            { title: 'Privacy Policy', link: AppPages.privacyPolicy },
           ]}
         />
         <Section
-          title={"Solutions"}
+          title={'Solutions'}
           list={[
-            { title: "Gift cards", link: AppPages.solutions },
-            { title: "Swap", link: "#" },
+            { title: 'Gift cards', link: AppPages.solutions },
+            { title: 'Swap', link: '#' },
           ]}
         />
         <Section
-          title={"Support"}
+          title={'Support'}
           list={[
-            { title: "FAQ", link: AppPages.faq },
-            { title: "Contact Us", link: AppPages.contactUs },
+            { title: 'FAQ', link: AppPages.faq },
+            { title: 'Contact Us', link: AppPages.contactUs },
           ]}
         />
         <Section
-          title={"Link"}
+          title={'Link'}
           list={[
-            { title: "Email", link: "#" },
-            { title: "LinkedIn", link: "#" },
-            { title: "Instagram", link: "#" },
-            { title: "Facebook", link: "#" },
+            { title: 'Email', link: '#' },
+            { title: 'LinkedIn', link: '#' },
+            { title: 'Instagram', link: '#' },
+            { title: 'Facebook', link: '#' },
           ]}
         />
       </div>
@@ -57,17 +57,10 @@ export function FooterSection() {
   );
 }
 
-function Section(props: {
-  title: string;
-  list: { title: string; link: string }[];
-}) {
+function Section(props: { title: string; list: { title: string; link: string }[] }) {
   return (
-    <div
-      className={
-        "flex flex-col mb-4 w-full md:w-fit md:items-start items-center md:py-4 py-2"
-      }
-    >
-      <TextH v="h4" className={"font-bold text-primary-foreground"}>
+    <div className={'flex flex-col mb-4 w-full md:w-fit md:items-start items-center md:py-4 py-2'}>
+      <TextH v="h4" className={'font-bold text-primary-foreground'}>
         {props.title}
       </TextH>
       {props.list.map((val, i) => (

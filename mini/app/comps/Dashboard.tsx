@@ -1,4 +1,5 @@
-import { cn, TextH, TextP } from '@repo/ui';
+import { TextH, TextP } from '@/comps';
+import { cn, } from '@/lib';
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 

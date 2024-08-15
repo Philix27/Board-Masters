@@ -1,7 +1,7 @@
-import React from "react";
-import { NavItem } from "../navbar";
-import { TextP } from "@repo/ui";
-import Link from "next/link";
+import React from 'react';
+import { NavItem } from '../navbar';
+import { TextP } from '@/comps';
+import Link from 'next/link';
 
 export default function MobileSidebar(props: { items?: NavItem[] }) {
   return (
@@ -9,12 +9,12 @@ export default function MobileSidebar(props: { items?: NavItem[] }) {
       {props.items?.map((v, i) => (
         <Link
           key={i}
-          href={v.href || "/#"}
-              className={`
+          href={v.href || '/#'}
+          className={`
           p-2 rounded-md w-full
           focus:[&>p]:text-primary-foreground`}
         >
-          <TextP v="p6" className={"text-primary"}>
+          <TextP v="p6" className={'text-primary'}>
             {v.title}
           </TextP>
         </Link>

@@ -1,5 +1,5 @@
-import { AppStores } from '@/app/lib';
-import { TextP } from '@repo/ui';
+import { AppStores } from '@/lib';
+import { TextP } from '@/comps';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 
 export type IBoardMoves = { from: string; to: string; piece: Piece };

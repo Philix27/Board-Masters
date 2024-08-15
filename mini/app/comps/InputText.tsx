@@ -1,20 +1,10 @@
-import { cn } from "@repo/ui";
-import { IconType } from "react-icons";
+import { cn } from '@/lib';
+import { IconType } from 'react-icons';
 
-
-export function InputText(props: {
-  Icon?: IconType;
-  placeH: string;
-  className?: string;
-}) {
+export function InputText(props: { Icon?: IconType; placeH: string; className?: string }) {
   const { Icon } = props;
   return (
-    <div
-      className={cn(
-        "bg-card  rounded-lg w-full flex items-center justify-center px-2",
-        props.className
-      )}
-    >
+    <div className={cn('bg-card  rounded-lg w-full flex items-center justify-center px-2', props.className)}>
       <input
         className="py-2 px-2 bg-card text-card-foreground rounded-2xl w-full outline-none"
         type="text"

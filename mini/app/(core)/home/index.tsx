@@ -1,11 +1,10 @@
 'use client';
-import { cn, TextH, TextP } from '@repo/ui';
+import { TextH, TextP } from '@/comps';
 import Link from 'next/link';
-import Image from 'next/image';
 import React from 'react';
 import { Navbar } from '@/comps';
 import { MdScoreboard } from 'react-icons/md';
-import { AppImg } from '@/lib';
+import { AppImg, cn } from '@/lib';
 
 export function HomePage() {
   return (

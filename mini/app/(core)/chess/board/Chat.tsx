@@ -1,4 +1,5 @@
-import { cn, TextP } from '@repo/ui';
+import { TextP } from '@/comps';
+import { cn } from '@/lib';
 import React, { useState } from 'react';
 import { IoSend } from 'react-icons/io5';
 

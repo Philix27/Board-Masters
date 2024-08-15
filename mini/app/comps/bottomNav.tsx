@@ -7,8 +7,7 @@ import { BiSolidChess } from 'react-icons/bi';
 import { FaChess, FaChessBoard } from 'react-icons/fa';
 import { MdOutlineSettings } from 'react-icons/md';
 import { FaRegChessKing } from 'react-icons/fa6';
-import { cn } from '@repo/ui';
-
+import { cn } from '@/lib';
 
 export function BottomNav() {
   const router = useRouter();

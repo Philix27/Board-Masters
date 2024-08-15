@@ -1,5 +1,5 @@
 import { AppStores } from '@/lib';
-import { TextP } from '@repo/ui';
+import { TextP } from '@/comps';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { ChatSection } from './Chat';
 

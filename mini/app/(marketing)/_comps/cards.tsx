@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { cn, TextH, TextP } from "@repo/ui";
+import { TextH, TextP } from '@/comps';
+import { cn } from '@/lib';
 
 export function CardsSection(props: {
   className?: string;
@@ -13,7 +14,7 @@ export function CardsSection(props: {
   }[];
 }) {
   return (
-    <section className={cn("w-full flex items-center justify-center", props.className)}>
+    <section className={cn('w-full flex items-center justify-center', props.className)}>
       <div
         className={`md:w-[80%]
       grid md:grid-cols-3 grid-cols-1 
@@ -21,22 +22,16 @@ export function CardsSection(props: {
     `}
       >
         {props.data.map((item, i) => (
-          <div
-            className={"border-r-ring md:mx-4 bg-primary rounded-md p-4 mb-5"}
-            key={i}
-          >
+          <div className={'border-r-ring md:mx-4 bg-primary rounded-md p-4 mb-5'} key={i}>
             <div className="p-2">
-              <div className={"w-full flex items-center justify-center mb-2"}>
-                <img
-                  src={item.img}
-                  className={"md:w-[300px] h-[350px] w-full"}
-                />
+              <div className={'w-full flex items-center justify-center mb-2'}>
+                <img src={item.img} className={'md:w-[300px] h-[350px] w-full'} />
               </div>
 
               <TextH v="h3" className="mb-4 text-primary-foreground">
                 {item.title}
               </TextH>
-              <TextP v="p5" className={"text-primary-foreground"}>
+              <TextP v="p5" className={'text-primary-foreground'}>
                 {item.subtitle}
               </TextP>
             </div>

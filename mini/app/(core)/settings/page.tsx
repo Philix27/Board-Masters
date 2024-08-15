@@ -1,6 +1,6 @@
 'use client';
-import { Navbar, Tabs } from '@/app/comps';
-import { AppStores } from '@/app/lib';
+import { Navbar, Tabs } from '@/comps';
+import { AppStores } from '@/lib';
 import React from 'react';
 import { ChessSettings } from './Chess';
 import { ProfileSettings } from './Profile';
@@ -25,7 +25,7 @@ export default function SettingsPage() {
           eyebrowType="Default"
           mouthType="Serious"
           skinColor="Brown"
-          className='h-[100px] my-4'
+          className="h-[100px] my-4"
         />
       </div>
       <div className="px-4">

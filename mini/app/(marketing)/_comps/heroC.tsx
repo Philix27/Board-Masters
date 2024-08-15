@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { cn, TextH, TextP } from "@repo/ui";
-import React, { ReactNode } from "react";
+import { TextH, TextP } from '@/comps';
+import { cn } from '@/lib';
+import React, { ReactNode } from 'react';
 
 export function HeroCenter(props: { children: ReactNode; className?: string }) {
   return (
-    <section className={cn("container md:w-[80%] w-full", props.className)}>
+    <section className={cn('container md:w-[80%] w-full', props.className)}>
       <div
         className={`
         min-h-[400px] w-full 

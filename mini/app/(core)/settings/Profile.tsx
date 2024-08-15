@@ -5,7 +5,6 @@ import { LiaWalletSolid, LiaCoinsSolid, LiaAddressBookSolid } from 'react-icons/
 import { TbLibraryPhoto } from 'react-icons/tb';
 import { IoPersonOutline } from 'react-icons/io5';
 import { IoFlagOutline } from 'react-icons/io5';
-import { countries } from 'country-flag-icons';
 import * as Flags from 'country-flag-icons/string/3x2';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 

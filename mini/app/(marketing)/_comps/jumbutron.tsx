@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { TextH, TextP } from "@repo/ui";
+import React from 'react';
+import { TextH, TextP } from '@/comps';
 
 export function JumbutronSection(props: { title: string; subtitle: string }) {
   return (
@@ -15,10 +15,10 @@ export function JumbutronSection(props: { title: string; subtitle: string }) {
     md:my-8 my-8 text-center
     `}
         >
-          <TextH v={"h2"} className="leading-loose text-xl">
+          <TextH v={'h2'} className="leading-loose text-xl">
             {props.title}
           </TextH>
-          <TextP v={"p5"} className="leading-loose">
+          <TextP v={'p5'} className="leading-loose">
             {props.subtitle}
           </TextP>
         </div>
