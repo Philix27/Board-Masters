@@ -3,99 +3,99 @@ import { CustomPieces } from 'react-chessboard/dist/chessboard/types';
 export const customPieces: CustomPieces = {
   wP: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wp.png" />;
+    //   return <SmallImg src="/chess/wp.png" />;
     // } else {
-    //   return <Img src="/wp.png" />;
+    //   return <Img src="/chess/wp.png" />;
     // }
-    return <Img src="/wp.png" />;
+    return <Img src="/chess/wp.png" />;
   },
   bP: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/bp.png" />;
+    //   return <SmallImg src="/chess/bp.png" />;
     // } else {
-    //   return <Img src="/bp.png" />;
+    //   return <Img src="/chess/bp.png" />;
     // }
-    return <Img src="/bp.png" />;
+    return <Img src="/chess/bp.png" />;
   },
   wB: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wb.png" />;
+    //   return <SmallImg src="/chess/wb.png" />;
     // } else {
-    //   return <Img src="/wb.png" />;
+    //   return <Img src="/chess/wb.png" />;
     // }
-    return <Img src="/wb.png" />;
+    return <Img src="/chess/wb.png" />;
   },
   bB: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/bb.png" />;
+    //   return <SmallImg src="/chess/bb.png" />;
     // } else {
-    //   return <Img src="/bb.png" />;
+    //   return <Img src="/chess/bb.png" />;
     // }
-    return <Img src="/bb.png" />;
+    return <Img src="/chess/bb.png" />;
   },
   wR: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wr.png" />;
+    //   return <SmallImg src="/chess/wr.png" />;
     // } else {
-    //   return <Img src="/wr.png" />;
+    //   return <Img src="/chess/wr.png" />;
     // }
-    return <Img src="/wr.png" />;
+    return <Img src="/chess/wr.png" />;
   },
   bR: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/br.png" />;
+    //   return <SmallImg src="/chess/br.png" />;
     // } else {
-    //   return <Img src="/br.png" />;
+    //   return <Img src="/chess/br.png" />;
     // }
-    return <Img src="/br.png" />;
+    return <Img src="/chess/br.png" />;
   },
   wK: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wk.png" />;
+    //   return <SmallImg src="/chess/wk.png" />;
     // } else {
-    //   return <Img src="/wk.png" />;
+    //   return <Img src="/chess/wk.png" />;
     // }
-    return <Img src="/wk.png" />;
+    return <Img src="/chess/wk.png" />;
   },
   bK: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/bk.png" />;
+    //   return <SmallImg src="/chess/bk.png" />;
     // } else {
-    //   return <Img src="/bk.png" />;
+    //   return <Img src="/chess/bk.png" />;
     // }
-    return <Img src="/bk.png" />;
+    return <Img src="/chess/bk.png" />;
   },
   wN: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wn.png" />;
+    //   return <SmallImg src="/chess/wn.png" />;
     // } else {
-    //   return <Img src="/wn.png" />;
+    //   return <Img src="/chess/wn.png" />;
     // }
-    return <Img src="/wn.png" />;
+    return <Img src="/chess/wn.png" />;
   },
   bN: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/bn.png" />;
+    //   return <SmallImg src="/chess/bn.png" />;
     // } else {
-    //   return <Img src="/bn.png" />;
+    //   return <Img src="/chess/bn.png" />;
     // }
-    return <Img src="/bn.png" />;
+    return <Img src="/chess/bn.png" />;
   },
   wQ: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/wq.png" />;
+    //   return <SmallImg src="/chess/wq.png" />;
     // } else {
-    //   return <Img src="/wq.png" />;
+    //   return <Img src="/chess/wq.png" />;
     // }
-    return <Img src="/wq.png" />;
+    return <Img src="/chess/wq.png" />;
   },
   bQ: (args) => {
     // if (args.isDragging) {
-    //   return <SmallImg src="/bq.png" />;
+    //   return <SmallImg src="/chess/bq.png" />;
     // } else {
-    //   return <Img src="/bq.png" />;
+    //   return <Img src="/chess/bq.png" />;
     // }
-    return <Img src="/bq.png" />;
+    return <Img src="/chess/bq.png" />;
   },
 };
 

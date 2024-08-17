@@ -19,7 +19,7 @@ export const SettingsContext = createContext<{
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string;
 
 const rainbowConfig = getDefaultConfig({
-  appName: 'Rampage',
+  appName: 'Board game',
   projectId: projectId,
   chains: [celo, celoAlfajores],
   ssr: true, // If your dApp uses server side rendering (SSR)
