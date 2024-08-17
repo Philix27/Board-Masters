@@ -1,21 +1,56 @@
 import { Client, Stream } from '@xmtp/xmtp-js';
 import { ethers } from 'ethers';
 import { useEffect } from 'react';
-import { string } from 'zod';
+import { AppStores } from '@/lib';
+import { ContractUtils } from 'web3';
+import { loadKeys, storeKeys } from './store';
 
-export const XmtpClient = async (signer: ethers.HDNodeWallet) => {
+export const xclient = async () => {
+  const getState = AppStores.useChat.getState();
+  const setState = AppStores.useChat.setState;
+
+  const address = await ContractUtils.getUserAddress();
+  const signer = await ContractUtils.geSigner(address!);
+
+  let currKey = loadKeys(address) as Uint8Array;
+  // const currKey = getState.keys.get(address!);
+  // let keys;
+
+  // if (!getState.keys.has(address!)) {
+  if (!currKey) {
+    // let keys = await Client.getKeys(signer, {
+    currKey = await Client.getKeys(signer, {
+      env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
+      skipContactPublishing: true,
+      persistConversations: false,
+    });
+    storeKeys(address, currKey);
+    setState({
+      // keys: getState.keys.set(address!, keys),
+      newKeys: currKey,
+    });
+    // storeKeys(address, keys);
+  }
+
   const xmtpClient = await Client.create(signer, {
     env: process.env.NODE_ENV === 'production' ? 'production' : 'dev',
     persistConversations: true,
+    skipContactPublishing: true,
+    privateKeyOverride: currKey,
   });
 
+  setState({ isOnNetwork: true });
+
+  // setState({
+  //   xmtpClient: xmtpClient!,
+  // });
 
   return xmtpClient;
 };
 
-async function getMsgStream(signer: ethers.HDNodeWallet, msgWith: string) {
+async function getMsgStream(msgWith: string) {
   const messages: string[] = [];
-  const xmtp = await XmtpClient(signer);
+  const xmtp = await xclient(signer);
   const conversation = await xmtp.conversations.newConversation(msgWith);
 
   for await (const message of await conversation.streamMessages()) {
@@ -30,30 +65,30 @@ async function getMsgStream(signer: ethers.HDNodeWallet, msgWith: string) {
   return messages;
 }
 
-async function stopLoop(signer: ethers.HDNodeWallet) {
-  const xmtp = await XmtpClient(signer);
+async function stopLoop() {
+  const xmtp = await xclient();
   //   const stream = new Stream(xmtp, ["*"], {});
   //   stream.return();
 }
 
-export const useMsgStream = async (signer: ethers.HDNodeWallet, msgWith: string) => {
+export const useMsgStream = async (msgWith: string) => {
   useEffect(() => {
-    getMsgStream(signer, msgWith);
+    getMsgStream(msgWith);
     return () => {
-      stopLoop(signer);
+      stopLoop();
     };
   }, []);
 };
 
-export async function getAllConversations(signer: ethers.HDNodeWallet) {
-  const xmtp = await XmtpClient(signer);
+export async function getAllConversations() {
+  const xmtp = await xclient();
 
   const allConversations = await xmtp.conversations.list();
   return allConversations;
 }
 
-export async function sendConversations(signer: ethers.HDNodeWallet, toAddress: string, msg: string) {
-  const xmtp = await XmtpClient(signer);
+export async function sendConversations(toAddress: string, msg: string) {
+  const xmtp = await xclient();
   try {
     const conversation = await xmtp.conversations.newConversation(toAddress);
     await conversation.send(msg);
@@ -63,16 +98,16 @@ export async function sendConversations(signer: ethers.HDNodeWallet, toAddress: 
   }
 }
 
-export async function getChatMessages(signer: ethers.HDNodeWallet, toAddress: string) {
-  const xmtp = await XmtpClient(signer);
+export async function getChatMessages(toAddress: string) {
+  const xmtp = await xclient();
 
   const conversation = await xmtp.conversations.newConversation(toAddress);
   const messages = await conversation.messages();
   return messages;
 }
 
-export async function sendBroadcastMsg(signer: ethers.HDNodeWallet, msg: string, addresses: string[]) {
-  const xmtp = await XmtpClient(signer);
+export async function sendBroadcastMsg(msg: string, addresses: string[]) {
+  const xmtp = await xclient();
 
   const broadcasts_canMessage = await Client.canMessage(addresses);
 
@@ -85,3 +120,17 @@ export async function sendBroadcastMsg(signer: ethers.HDNodeWallet, msg: string,
     }
   }
 }
+
+export const getRelativeTimeLabel = (dateString: string) => {
+  const diff = new Date() - new Date(dateString);
+
+  const diffMinutes = Math.floor(diff / 1000 / 60);
+  const diffHours = Math.floor(diff / 1000 / 60 / 60);
+  const diffDays = Math.floor(diff / 1000 / 60 / 60 / 24);
+  const diffWeeks = Math.floor(diff / 1000 / 60 / 60 / 24 / 7);
+
+  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+  return `${diffWeeks} week${diffWeeks > 1 ? 's' : ''} ago`;
+};
