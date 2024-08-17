@@ -1,18 +1,35 @@
-import { geAppContract } from "../utils";
+import { parseEther } from 'ethers';
+import { geAppContract } from '../utils';
 
-export async function createCard(props: {
+export const testCall = async (props: {
   userAddress: string;
-  createdFor: string;
-  amount: number;
-}) {
+  amount: string;
+  // _signerAddress: `0x${string}` | undefined
+  _seller: `0x${string}` | undefined;
+}) => {
+  const contract = await geAppContract(props.userAddress);
+
+  try {
+    const txn = await contract.createPayment!(props._seller, {
+      gasLimit: 500000,
+      value: parseEther(props.amount),
+    });
+
+    await txn.wait();
+  } catch (error) {
+    console.log('An error occurred', error);
+  }
+};
+
+export async function createCard(props: { userAddress: string; createdFor: string; amount: number }) {
   const contract = await geAppContract(props.userAddress);
 
   try {
     const txn = await contract.createCard!(props.createdFor, props.amount);
     await txn.wait();
   } catch (error) {
-    console.error("Error:", error);
-    throw new Error("Failed operation");
+    console.error('Error:', error);
+    throw new Error('Failed operation');
   }
 }
 
@@ -23,8 +40,8 @@ export async function updateCard(props: { userAddress: string; id: number }) {
     const txn = await contract.updateCard!(props.id);
     await txn.wait();
   } catch (error) {
-    console.error("Error:", error);
-    throw new Error("Failed operation");
+    console.error('Error:', error);
+    throw new Error('Failed operation');
   }
 }
 
@@ -34,9 +51,9 @@ export async function getAllCards(props: { userAddress: string }) {
   try {
     const txn = await contract.getAllCards!();
     // const res = await txn.wait();
-    console.log("In getAllCards:", txn);
+    console.log('In getAllCards:', txn);
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     // throw new Error("Failed operation");
   }
 }
@@ -57,19 +74,16 @@ export async function getCardsCreatedBy(props: { userAddress: string }) {
       identifier: proxy[6],
     };
 
-    console.log("In getCardsCreatedBy:", data);
+    console.log('In getCardsCreatedBy:', data);
     return data;
     // await txn.wait();
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     // throw new Error("Failed operation");
   }
 }
 
-export async function getCardsCreatedFor(props: {
-  userAddress: string;
-  identifier: string;
-}) {
+export async function getCardsCreatedFor(props: { userAddress: string; identifier: string }) {
   const contract = await geAppContract(props.userAddress);
 
   try {
@@ -84,10 +98,10 @@ export async function getCardsCreatedFor(props: {
     //    address: proxy[5],
     //    identifier: proxy[6],
     //  };
-    console.log("In getCardsCreatedFor:", proxy);
+    console.log('In getCardsCreatedFor:', proxy);
     // await txn.wait();
   } catch (error) {
-    console.error("Error:", error);
-    throw new Error("Failed operation");
+    console.error('Error:', error);
+    throw new Error('Failed operation');
   }
 }

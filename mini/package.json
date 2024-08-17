@@ -47,6 +47,8 @@
     "@serwist/precaching": "^9.0.3",
     "@serwist/sw": "^9.0.3",
     "axios": "^1.7.2",
+    "@xmtp/frames-client": "^0.5.3",
+    "@xmtp/xmtp-js": "^11.6.2",
     "net": "^1.0.2"
   },
   "devDependencies": {
