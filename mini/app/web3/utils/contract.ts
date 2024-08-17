@@ -1,5 +1,5 @@
 import { parseEther } from 'ethers';
-import { geAppContract } from '../utils';
+import { geAppContract } from '.';
 
 export const testCall = async (props: {
   userAddress: string;

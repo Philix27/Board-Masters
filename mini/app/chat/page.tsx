@@ -2,12 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
-import { ethers } from 'ethers';
-import { ContractUtils } from 'web3';
-import { useQuery } from '@tanstack/react-query';
 import * as XmtpHandler from './xmtpClient';
 import { AppStores } from '@/lib';
-import { Client, Conversation, Stream } from '@xmtp/xmtp-js';
+import { Conversation, Stream } from '@xmtp/xmtp-js';
 
 export default function ChatPage() {
   const store = AppStores.useChat();
@@ -149,7 +146,7 @@ function Message(props: { toAddress: `0x${string}` }) {
 
     return conversations.map((conversation, index) => {
       // Find the last message for this conversation by ID
-      const lastMessage = lastMessages.find((msg) => msg.topic === conversation.topic)?.content || '...';
+      // const lastMessage = lastMessages.find((msg) => msg.topic === conversation.topic)?.content || '...';
 
       return (
         <div>
@@ -159,7 +156,7 @@ function Message(props: { toAddress: `0x${string}` }) {
               '...' +
               conversation.peerAddress.substring(conversation.peerAddress.length - 5)}
           </span>
-          <span>{lastMessage}</span>
+          {/* <span>{lastMessage}</span> */}
         </div>
       );
     });

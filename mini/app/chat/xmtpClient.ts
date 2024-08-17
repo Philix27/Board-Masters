@@ -2,7 +2,7 @@ import { Client, Stream } from '@xmtp/xmtp-js';
 import { ethers } from 'ethers';
 import { useEffect } from 'react';
 import { AppStores } from '@/lib';
-import { ContractUtils } from 'web3';
+import { ContractUtils } from '@/web3';
 import { loadKeys, storeKeys } from './store';
 
 export const xclient = async () => {
@@ -50,7 +50,7 @@ export const xclient = async () => {
 
 async function getMsgStream(msgWith: string) {
   const messages: string[] = [];
-  const xmtp = await xclient(signer);
+  const xmtp = await xclient();
   const conversation = await xmtp.conversations.newConversation(msgWith);
 
   for await (const message of await conversation.streamMessages()) {
@@ -122,7 +122,7 @@ export async function sendBroadcastMsg(msg: string, addresses: string[]) {
 }
 
 export const getRelativeTimeLabel = (dateString: string) => {
-  const diff = new Date() - new Date(dateString);
+  const diff = new Date().getTime() - new Date(dateString).getTime();
 
   const diffMinutes = Math.floor(diff / 1000 / 60);
   const diffHours = Math.floor(diff / 1000 / 60 / 60);
