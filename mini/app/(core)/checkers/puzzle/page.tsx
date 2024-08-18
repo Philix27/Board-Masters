@@ -1,8 +1,6 @@
-"use client";
-import React, { useState } from "react";
-import { Navbar, ToggleSwitch } from "@/comps";
-
-
+'use client';
+import React, { useState } from 'react';
+import { Navbar } from '@/comps';
 
 export default function PuzzlePage() {
   const [isBuy, setIsBuy] = useState<boolean>(true);

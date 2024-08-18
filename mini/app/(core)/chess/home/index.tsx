@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { DashboardItems, IDashboard, Navbar } from '@/comps';
-import { MdCastForEducation, MdScoreboard } from 'react-icons/md';
+import { MdCastForEducation } from 'react-icons/md';
 import { FaChess } from 'react-icons/fa';
 import { LiaChessBishopSolid, LiaChessKnightSolid, LiaChessQueenSolid } from 'react-icons/lia';
 
