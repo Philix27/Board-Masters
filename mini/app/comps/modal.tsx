@@ -16,7 +16,7 @@ export function ModalWrapper(props: { children: ReactNode }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
-        className="bg-background w-[90%] rounded-t-lg px-4 py-2"
+        className="bg-background w-[90%] md:w-[50%] lg:w-[75%] rounded-lg px-4 py-4"
       >
         {props.children}
       </motion.div>

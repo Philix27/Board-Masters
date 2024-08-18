@@ -25,7 +25,7 @@ export function Drawer() {
         initial={{ x: 0, opacity: 0.5, translateX: -20 }}
         animate={{ x: 0, opacity: 1, translateX: 0 }}
         transition={{ ease: 'easeInOut', duration: 0.3 }}
-        className={'w-[60%] bg-secondary rounded-r-2xl'}
+        className={'w-[60%] max-w-[300px] bg-secondary rounded-r-2xl'}
       >
         {homePaths.includes(path) ? <HomeDrawer router={router} /> : <InAppDrawer router={router} />}
       </motion.div>
