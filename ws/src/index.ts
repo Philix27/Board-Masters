@@ -1,14 +1,13 @@
-import express from 'express';
-import http from 'http';
-import { Server } from 'socket.io';
-import cors from 'cors';
-import { roomHandler } from './room';
-import { ApiService } from '@repo/rpc';
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import cors from "cors";
+import { roomHandler } from "./room";
 
 const app = express();
 
-app.get('/health', (_, res) => {
-  res.send('Server is running');
+app.get("/health", (_, res) => {
+  res.send("Server is running");
 });
 
 app.use(cors);
@@ -17,18 +16,18 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
+    origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  const gameService = new ApiService.game();
-  roomHandler(socket, gameService);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  // const gameService = new ApiService.game();
+  // roomHandler(socket, gameService);
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
   });
 });
 
