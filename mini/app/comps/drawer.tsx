@@ -18,7 +18,7 @@ export function Drawer() {
   const { setTheme, theme } = useTheme();
   const path = usePathname();
 
-  console.log("path:", path);
+  console.log('path:', path);
   return (
     <div className="w-full h-screen flex  fixed top-0 left-0 bg-black/30 ">
       <motion.div
@@ -27,7 +27,7 @@ export function Drawer() {
         transition={{ ease: 'easeInOut', duration: 0.3 }}
         className={'w-[60%] bg-secondary rounded-r-2xl'}
       >
-        {path === '/' ? <HomeDrawer router={router} /> : <InAppDrawer router={router} />}
+        {homePaths.includes(path) ? <HomeDrawer router={router} /> : <InAppDrawer router={router} />}
       </motion.div>
       <div
         className={'w-[40%]'}
@@ -39,6 +39,7 @@ export function Drawer() {
   );
 }
 
+const homePaths = ['/', '/about-us', '/contact-us', '/faq', '/privacy', '/terms-condition'];
 function DrawerRow(props: { title: string; icon?: IconType; onClick?: VoidFunction }) {
   const Icon = props.icon!;
   return (
@@ -54,40 +55,6 @@ function HomeDrawer(props: { router: AppRouterInstance }) {
   const { setTheme, theme } = useTheme();
   const store = AppStores.useSettingsStore();
 
-  return (
-    <div className="px-4 mt-[50px]">
-      <DrawerRow
-        title={'Profile'}
-        icon={GoPerson}
-        onClick={() => {
-          router.push('/settings');
-        }}
-      />
-      <DrawerRow
-        title={'Notifications'}
-        icon={IoIosNotificationsOutline}
-        onClick={() => {
-          router.push('/notify');
-        }}
-      />
-      <DrawerRow
-        title={'Theme'}
-        icon={IoColorPaletteOutline}
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      />
-      <DrawerRow
-        title={'Sound'}
-        icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
-        onClick={() => store.update({ isLoud: !store.isLoud })}
-      />
-    </div>
-  );
-}
-
-function InAppDrawer(props: { router: AppRouterInstance }) {
-  const { setTheme, theme } = useTheme();
-  const store = AppStores.useSettingsStore();
-  const { router } = props;
   return (
     <div className="px-4 mt-[50px]">
       <DrawerRow
@@ -112,10 +79,48 @@ function InAppDrawer(props: { router: AppRouterInstance }) {
       <DrawerRow
         title={'Privacy'}
         icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
-        onClick={() => store.update({ isLoud: !store.isLoud })}
+        onClick={() => {
+          router.push('/notify');
+        }}
       />
       <DrawerRow
         title={'Terms of service'}
+        icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
+        onClick={() => {
+          router.push('/notify');
+        }}
+      />
+    </div>
+  );
+}
+
+function InAppDrawer(props: { router: AppRouterInstance }) {
+  const { setTheme, theme } = useTheme();
+  const store = AppStores.useSettingsStore();
+  const { router } = props;
+  return (
+    <div className="px-4 mt-[50px]">
+      <DrawerRow
+        title={'Profile'}
+        icon={GoPerson}
+        onClick={() => {
+          router.push('/settings');
+        }}
+      />
+      <DrawerRow
+        title={'Notifications'}
+        icon={IoIosNotificationsOutline}
+        onClick={() => {
+          router.push('/notify');
+        }}
+      />
+      <DrawerRow
+        title={'Theme'}
+        icon={IoColorPaletteOutline}
+        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      />
+      <DrawerRow
+        title={'Sound'}
         icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
         onClick={() => store.update({ isLoud: !store.isLoud })}
       />

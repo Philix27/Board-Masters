@@ -10,7 +10,6 @@ export function HomePage() {
   return (
     <>
       <Navbar title={'Chess'} />
-
       <DashboardItems data={dashboardItems} />
     </>
   );
@@ -19,10 +18,24 @@ export function HomePage() {
 const dashboardItems: IDashboard[] = [
   {
     title: 'Play now',
-    link: '/chess/board',
+    link: '/chess/play-now',
     subTitle: 'Stake and play with random opponents',
     color: 'bg-cyan-600',
     icon: FaChess,
+  },
+  {
+    title: 'Play Friend',
+    link: '/chess/play-friend',
+    subTitle: 'Invite a friend to play with',
+    color: 'bg-red-300',
+    icon: LiaChessBishopSolid,
+  },
+  {
+    title: 'Bot',
+    link: '/chess/play-bot',
+    subTitle: 'Play a fast game with a bot',
+    color: 'bg-teal-500',
+    icon: LiaChessQueenSolid,
   },
   {
     title: 'Score Board',
@@ -32,21 +45,7 @@ const dashboardItems: IDashboard[] = [
     icon: LiaChessKnightSolid,
   },
   {
-    title: 'Bot',
-    link: '/chess/bot',
-    subTitle: 'Play with AI',
-    color: 'bg-teal-500',
-    icon: LiaChessQueenSolid,
-  },
-  {
-    title: 'Play Friend',
-    link: '/chess/board',
-    subTitle: 'Invite a friend to play with',
-    color: 'bg-red-300',
-    icon: LiaChessBishopSolid,
-  },
-  {
-    title: 'Learn',
+    title: 'Learn', // puzzle, watch
     link: '/chess/learn',
     subTitle: 'Learn chess with a simple walkthrough courses',
     color: 'bg-purple-700',
