@@ -15,7 +15,7 @@ export function HeroWithImg(props: { children: ReactNode; img: string; className
       >
         <div
           className={`
-        pt-4 h-full
+        pt-4 h-full flex items-center justify-center
         w-[85%]
         md:w-[50%] gap-x-4
       `}
@@ -23,7 +23,7 @@ export function HeroWithImg(props: { children: ReactNode; img: string; className
           {props.children}
         </div>
         <div className="my-5">
-          <img src={props.img} className="md:h-[300px] h-[200px] w-auto" />
+          <img src={props.img} className="md:h-[500px] h-[200px] w-auto" />
         </div>
       </div>
     </section>

@@ -15,11 +15,11 @@ export function HomeSection() {
   const { connect } = useConnect();
   const router = useRouter();
   return (
-    <div>
-      <HeroWithImg img={'/fx1.png'}>
+    <div className={'flex flex-col items-center justify-center'}>
+      <HeroWithImg img={'/piece.png'}>
         <TextH v="h1" className={'text-[24px] font-extrabold md:text-[50px] text-card-foreground'}>
-          <span className="text-primary"> Chess </span> and
-          <span className="text-primary"> Checkers</span>
+          <span className="text-primary tracking-wide"> Chess </span> and
+          <span className="text-primary tracking-wide"> Checkers</span>
         </TextH>
       </HeroWithImg>
       <div className="md:hidden my-5 flex flex-col items-center justify-center">
@@ -34,7 +34,7 @@ export function HomeSection() {
           </AppButton>
         ) : (
           <AppButton className="w-fit" onClick={() => connect({ connector: injected() })}>
-           Connect
+            Connect
           </AppButton>
         )}
       </div>
