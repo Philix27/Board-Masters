@@ -13,34 +13,95 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model game {
-  id         String     @id @unique
-  status     GameStatus
-  created_at DateTime   @default(now())
-  updated_at DateTime   @default(now())
-  moves      moves[]
+model waitingRoom {
+  id            String            @id @default(uuid())
+  firstPlayerId String
+  status        WaitingRoomStatus @default(WAITING)
+  created_at    DateTime          @default(now())
+  updated_at    DateTime          @default(now())
+
+  @@index([firstPlayerId])
+}
+
+enum WaitingRoomStatus {
+  WAITING
+  JOINED
+  CANCELLED
+}
+
+model games {
+  id            String      @id @default(uuid())
+  status        GameStatus
+  whitePlayerId String
+  blackPlayerId String
+  whitePlayer   users       @relation("GamesAsWhite", fields: [whitePlayerId], references: [id])
+  blackPlayer   users       @relation("GamesAsBlack", fields: [blackPlayerId], references: [id])
+  result        GameResult?
+  timeControl   TimeControl
+  startingFen   String      @default("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") // default value for the startingFen
+  currentFen    String?
+  startAt       DateTime    @default(now())
+  endAt         DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
+  moves         moves[]
+
+  @@index([status, result])
 }
 
 enum GameStatus {
   WAITING
-  STARTED
   PAUSED
   COMPLETED
+  IN_PROGRESS
+  ABANDONED
+  TIME_UP
+  PLAYER_EXIT
+}
+
+enum GameResult {
+  WHITE_WINS
+  BLACK_WINS
+  DRAW
+}
+
+enum TimeControl {
+  CLASSICAL
+  RAPID
+  BLITZ
+  BULLET
 }
 
 model moves {
-  id         String   @id
-  game_id    String
-  game       game     @relation(fields: [game_id], references: [id])
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  id         String   @id @default(uuid())
+  from       String
+  to         String
+  moveNumber Int
+  before     String
+  after      String
+  playerId   String
+  player     users    @relation(fields: [playerId], references: [id])
+  timeTaken  Int?     @default(0)
+  san        String?
+
+  gameId     String
+  game       games    @relation(fields: [gameId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([gameId])
 }
 
 model users {
-  id           String   @id @unique
+  id           String   @id @default(uuid())
   wallet       String   @unique
-  username     String
-  total_points Int
-  created_at   DateTime @default(now())
-  updated_at   DateTime @default(now())
+  username     String?
+  gamesAsWhite games[]  @relation("GamesAsWhite")
+  gamesAsBlack games[]  @relation("GamesAsBlack")
+  moves        moves[]
+  total_points Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  @@index([id])
 }
