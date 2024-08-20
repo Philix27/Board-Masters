@@ -2,6 +2,9 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
+import { AppRepository } from "./service/repo";
+import { PrismaClient } from "@prisma/client";
+import { roomHandler } from "./room";
 
 const app = express();
 
@@ -22,8 +25,8 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
-  // const gameService = new ApiService.game();
-  // roomHandler(socket, gameService);
+  const service = new AppRepository(new PrismaClient());
+  roomHandler(socket, service);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");

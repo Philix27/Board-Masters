@@ -1,27 +1,48 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chess, Move, Square } from 'chess.js';
-import React from 'react';
-import { Navbar, Tabs } from '@/comps';
 import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
-import { TextP } from '@/comps';
+import { TextP, Tabs } from '@/comps';
+import React from 'react';
 import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
 import { AppStores } from '@/lib';
 import { BoardMoves, IBoardMoves } from './Moves';
+import { DefaultEventsMap } from '@socket.io/component-emitter';
+
 // import { SocketEvents } from '@repo/rpc';
 const WS_URL = 'ws://localhost:9400';
-const ws = socketIO(WS_URL);
+const SocketEvents = {
+  CREATE_ROOM: 'CREATE_ROOM',
+  MOVE_PIECE: 'MOVE_PIECE',
+  LEAVE_ROOM: 'LEAVE_ROOM',
+  USER_DISCONNECTED: 'USER_DISCONNECTED',
+};
 
-export function ChessGame() {
+export function ChessGame(props: {}) {
   const chess = new Chess();
   const [game, setGame] = useState(chess);
   const [gameMoves, setGameMoves] = useState<IBoardMoves[]>([]);
   const [counter, setCounter] = useState(0);
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
   const [isGameStarted, setGameStarted] = useState(false);
   let timeoutId: NodeJS.Timeout;
   const store = AppStores.useSettingsStore();
+
+  useEffect(() => {
+    const wsk = socketIO(WS_URL);
+    const soso = wsk.connect();
+    setSocket(soso);
+    socket?.on(SocketEvents.MOVE_PIECE, (roomName) => {
+      if (roomName === '0x909') {
+        console.log('Got room message');
+      }
+    });
+    return () => {
+      socket?.disconnect();
+    };
+  }, []);
 
   function makeAMove(
     move:
@@ -61,6 +82,8 @@ export function ChessGame() {
           },
         ];
       });
+
+      socket?.emit(SocketEvents.MOVE_PIECE, { from: move.from, to: move.to });
     }
   }
 
@@ -74,7 +97,7 @@ export function ChessGame() {
 
     if (move === null) return false;
 
-    ws.emit('MOVE_PIECE', {
+    socket!.emit('MOVE_PIECE', {
       from: move.from,
       to: move.to,
       userAddress: '0x467372',

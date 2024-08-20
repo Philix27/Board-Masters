@@ -13,7 +13,7 @@ export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
         props.gameMoves.map((m, i) => (
           <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
             <div className="flex items-center">
-              <img src={`/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
+              <img src={`/chess/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
               <TextP> {m.from}</TextP>
             </div>
             <TextP>{m.to}</TextP>
@@ -25,7 +25,7 @@ export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
           .map((m, i) => (
             <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
               <div className="flex items-center">
-                <img src={`/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
+                <img src={`/chess/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
                 <TextP> {m.from}</TextP>
               </div>
               <TextP>{m.to}</TextP>
@@ -37,7 +37,7 @@ export function BoardMoves(props: { gameMoves: IBoardMoves[] }) {
           .map((m, i) => (
             <div key={i} className="flex items-center justify-between bg-secondary py-2 px-2 mb-1 rounded-md">
               <div className="flex items-center">
-                <img src={`/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
+                <img src={`/chess/${m.piece}.png`} className="w-[25px] h-[25px] mr-3" />
                 <TextP> {m.from}</TextP>
               </div>
               <TextP>{m.to}</TextP>

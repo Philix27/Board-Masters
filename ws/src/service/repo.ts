@@ -32,6 +32,7 @@ export class AppRepository {
           status: "JOINED",
         },
       });
+
       return {
         msg: "JOINED",
         ...game,
@@ -72,14 +73,14 @@ export class AppRepository {
   async makeMove(props: {
     from: string;
     to: string;
-    player_id: string;
+    playerId: string;
     gameId: string;
   }) {
     const res = await this.prisma.moves.create({
       data: {
         from: props.from,
         to: props.to,
-        playerId: props.player_id,
+        playerId: props.playerId,
         gameId: props.gameId,
         moveNumber: 2,
         before: "",

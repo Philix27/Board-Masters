@@ -9,21 +9,21 @@ export function ChatSection() {
 
   return (
     <div className={``}>
+      <MessageBubble message="Good message from player 2" forMe={false} />
+      <MessageBubble message="Vivian message from player 2" forMe={true} />
+      <MessageBubble message="Christi message from player 2" forMe={true} />
+      <MessageBubble message="Able message from player 2" forMe={false} />
+      <MessageBubble message="Hello message from player 2" forMe={true} />
+      <MessageBubble message="Hello message from player 2" forMe={false} />
+      <MessageBubble message="Hello message from player 2" forMe={true} />
+      <MessageBubble message="Money message from player 2" forMe={false} />
+      <MessageBubble message="Hello message from player 2" forMe={false} />
       <MessageBubble message="Hello message from player 2" forMe={false} />
       <MessageBubble message="Hello message from player 2" forMe={true} />
       <MessageBubble message="Hello message from player 2" forMe={true} />
       <MessageBubble message="Hello message from player 2" forMe={false} />
       <MessageBubble message="Hello message from player 2" forMe={true} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
-      <MessageBubble message="Hello message from player 2" forMe={true} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
-      <MessageBubble message="Hello message from player 2" forMe={true} />
-      <MessageBubble message="Hello message from player 2" forMe={true} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
-      <MessageBubble message="Hello message from player 2" forMe={true} />
-      <MessageBubble message="Hello message from player 2" forMe={false} />
+      <MessageBubble message="Opposite message from player 2" forMe={false} />
       <MessageBubble message="Hello message from player 2" forMe={true} />
       <MessageBubble message="Hello message from player 2" forMe={false} />
       <MessageBubble message="Hello message from player 2" forMe={false} />
