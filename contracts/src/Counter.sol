@@ -4,9 +4,12 @@ pragma solidity ^0.8.13;
 contract Counter {
     uint256 public count;
 
-    constructor(uint256 _count)  {
-        count = _count;
+    constructor()  {
+        count = 5;
     }
+    // constructor(uint256 _count)  {
+    //     count = _count;
+    // }
     // function setNumber(uuint256 newNumber) public {
     //     count = newNumber;
     // }
