@@ -1,16 +1,15 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { MdScoreboard } from 'react-icons/md';
-import { TextH, Navbar, ChessGame, ModalWrapper, AppInput, AppButton, InputText, Spinner, TextP } from '@/comps';
+import { TextH, Navbar, ChessGame, ModalWrapper, AppButton, Spinner, TextP } from '@/comps';
 import { useRouter } from 'next/navigation';
 
 export default function PlayNowPage() {
-  const [waitingPlayer, setWaitingPlayer] = useState<'NONE' | 'WAIT'>('NONE');
+  const [waitingPlayer, setWaitingPlayer] = useState<'NONE' | 'WAIT' | 'NOTE'>('NONE');
   const router = useRouter();
 
   useEffect(() => {
-    setWaitingPlayer('WAIT');
+    setWaitingPlayer('NOTE');
     return () => {};
   }, []);
 
@@ -18,6 +17,22 @@ export default function PlayNowPage() {
     <div>
       <Navbar title={'Two Random People'} onIconClick={() => {}} isBack />
       <ChessGame />
+      {waitingPlayer === 'NOTE' && (
+        <ModalWrapper>
+          <div>
+            <TextH className="mb-2">Note</TextH>
+            <TextP className="mb-2">You need to stake $5 to participate in this game.</TextP>
+            <div className="w-full flex items-center justify-around">
+              <AppButton variant={'outline'} className="w-[40%]" onClick={() => router.back()}>
+                Cancel
+              </AppButton>
+              <AppButton className="w-[40%]" onClick={() => setWaitingPlayer('WAIT')}>
+                Next
+              </AppButton>
+            </div>
+          </div>
+        </ModalWrapper>
+      )}
       {waitingPlayer === 'WAIT' && (
         <ModalWrapper>
           <div>
