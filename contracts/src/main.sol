@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "openzeppelin/contracts/token/ERC20/IERC20.sol";
+// import "solmate/tokens/ERC20.sol";
+import "openzeppelin/token/ERC20/IERC20.sol";
 
 contract BoardMasters {
     IERC20 public cUSD;
@@ -76,7 +77,11 @@ contract BoardMasters {
 
     function startGame(uint256 gameId) external gameNotStarted(gameId) onlyPlayers(gameId) {
         Game storage game = games[gameId];
-        require(gameBalances[gameId][game.player1] == game.stakeAmount && gameBalances[gameId][game.player2] == game.stakeAmount, "Both players must stake the exact amount");
+        require(
+            gameBalances[gameId][game.player1] == game.stakeAmount
+                && gameBalances[gameId][game.player2] == game.stakeAmount,
+            "Both players must stake the exact amount"
+        );
 
         game.gameStarted = true;
 
@@ -109,7 +114,18 @@ contract BoardMasters {
         emit StakeWithdrawn(gameId, msg.sender, amount);
     }
 
-    function getGameDetails(uint256 gameId) external view returns (address player1, address player2, uint256 stakeAmount, address winner, bool gameStarted, bool gameEnded) {
+    function getGameDetails(uint256 gameId)
+        external
+        view
+        returns (
+            address player1,
+            address player2,
+            uint256 stakeAmount,
+            address winner,
+            bool gameStarted,
+            bool gameEnded
+        )
+    {
         Game storage game = games[gameId];
         return (game.player1, game.player2, game.stakeAmount, game.winner, game.gameStarted, game.gameEnded);
     }

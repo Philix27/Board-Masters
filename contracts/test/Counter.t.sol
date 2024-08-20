@@ -22,14 +22,14 @@ contract CounterTest is Test {
     //     assertEq(counter.number(), x);
     // }
 
-    function testGetCount() public  {
-       uint256 count = counter.getCount();
+    function testGetCount() public {
+        uint256 count = counter.getCount();
 
         assertEq(count, 3);
         emit log_named_uint("Counter value", count);
     }
 
-    function testIncrement() public  {
+    function testIncrement() public {
         counter.increment();
         uint256 count = counter.getCount();
 
@@ -37,6 +37,4 @@ contract CounterTest is Test {
         assertEq(count, 4);
         emit log_named_uint("Increment value", count);
     }
-
-
 }
