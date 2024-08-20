@@ -1,0 +1,1 @@
+source .env && forge create --rpc-url $RPC_URL --constructor-args $CONSTRUCTOR --private-key $PRIVATE_KEY src/main.sol:BoardMasters

@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "deploy": "source .env && forge create --rpc-url $RPC_URL --private-key $PRIVATE_KEY src/Counter.sol:Counter"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2"
   }
