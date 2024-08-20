@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import { AppRepository } from "../service/repo";
+import { AppRepository } from "./repo";
 
 interface IRoomParams {
   roomId: string;

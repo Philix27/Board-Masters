@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import cors from "cors";
 import { AppRepository } from "./service/repo";
 import { PrismaClient } from "@prisma/client";
-import { roomHandler } from "./room";
+import { roomHandler } from "./service/socket";
 
 const app = express();
 

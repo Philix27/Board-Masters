@@ -52,4 +52,8 @@ Smart Contract: Foundary
 
 ## Roadmap
 
-- [] 
+- [] Basic chess logic
+- [] Use of Socket.io for multiplayer 
+- [] Use of XMTP for in app messaging during chat
+- [] Create rooms for managing various games
+- [] Use of Web3Auth for Authentication of user on the web
