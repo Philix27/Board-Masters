@@ -1,5 +1,6 @@
 import { Socket } from "socket.io";
 import { AppRepository } from "./repo";
+import { Chess } from "chess.js";
 
 interface IRoomParams {
   roomId: string;
@@ -7,33 +8,43 @@ interface IRoomParams {
 }
 
 const SocketEvents = {
+  JOIN_ROOM: "JOIN_ROOM",
   CREATE_ROOM: "CREATE_ROOM",
   MOVE_PIECE: "MOVE_PIECE",
   LEAVE_ROOM: "LEAVE_ROOM",
   USER_DISCONNECTED: "USER_DISCONNECTED",
 };
 
-export function roomHandler(socket: Socket, gameService: AppRepository) {
-  socket.on(SocketEvents.CREATE_ROOM, async (userAddress: string) => {
+export function roomHandler(
+  socket: Socket,
+  gameService: AppRepository,
+  board: Chess
+) {
+  socket.on(SocketEvents.JOIN_ROOM, async (userAddress: string) => {
     console.log("SocketEvents.CREATE_ROOM");
     try {
       const res = await gameService.createGame({
         userId: userAddress,
       });
 
-      socket.emit(SocketEvents.CREATE_ROOM, res);
+      socket.join(res.id);
+      socket.to(res.id).emit(SocketEvents.CREATE_ROOM, res);
     } catch (error) {}
   });
 
   socket.on(
     SocketEvents.MOVE_PIECE,
     async (payload: {
-      playerId: string;
       from: string;
       to: string;
+      playerId: string;
       gameId: string;
     }) => {
       console.log("SocketEvents.MOVE_PIECE", payload);
+      socket.emit("message", {
+        from: payload.from,
+        to: payload.to,
+      });
       try {
         const res = await gameService.makeMove({
           playerId: payload.playerId,
@@ -46,7 +57,9 @@ export function roomHandler(socket: Socket, gameService: AppRepository) {
           from: payload.from,
           to: payload.to,
         });
-      } catch (error) {}
+      } catch (error) {
+        console.error("Oops an err ocurred", error);
+      }
     }
   );
 

@@ -5,30 +5,46 @@ import { customPieces } from './piece';
 import { Chessboard } from 'react-chessboard';
 import { TextP, Tabs } from '@/comps';
 import React from 'react';
+import socketIO, { Socket } from 'socket.io-client';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
-import { AppStores, useSocket } from '@/lib';
+import { AppStores } from '@/lib';
 import { BoardMoves, IBoardMoves } from './Moves';
+import { DefaultEventsMap } from '@socket.io/component-emitter';
 import { useAccount } from 'wagmi';
 
+// import { SocketEvents } from '@repo/rpc';
+const WS_URL = 'ws://localhost:9400';
+const SocketEvents = {
+  CREATE_ROOM: 'CREATE_ROOM',
+  MOVE_PIECE: 'MOVE_PIECE',
+  LEAVE_ROOM: 'LEAVE_ROOM',
+  USER_DISCONNECTED: 'USER_DISCONNECTED',
+};
+
 export function ChessGame(props: {}) {
-  const [game, setGame] = useState(new Chess());
-  const { address } = useAccount();
+  const chess = new Chess();
+  const [game, setGame] = useState(chess);
+  const {address} = useAccount()
   const [gameMoves, setGameMoves] = useState<IBoardMoves[]>([]);
-  const [timeLeft, setCounter] = useState(10 * 60);
+  const [counter, setCounter] = useState(0);
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
   const [isGameStarted, setGameStarted] = useState(false);
+  let timeoutId: NodeJS.Timeout;
   const store = AppStores.useSettingsStore();
 
-  const ws = useSocket();
-
-  // useEffect(() => {
-  //   if (ws.socket) {
-  //     const socket = ws.socket! as any;
-  //     socket.onmessage = function (event: { data: any }) {
-  //       const message = JSON.parse(event.data);
-  //       console.log('In app message', message);
-  //     };
-  //   }
-  // }, []);
+  useEffect(() => {
+    const wsk = socketIO(WS_URL);
+    const soso = wsk.connect();
+    setSocket(soso);
+    socket?.on(SocketEvents.MOVE_PIECE, (roomName) => {
+      if (roomName === '0x909') {
+        console.log('Got room message');
+      }
+    });
+    return () => {
+      socket?.disconnect();
+    };
+  }, []);
 
   function makeAMove(
     move:
@@ -69,8 +85,7 @@ export function ChessGame(props: {}) {
         ];
       });
 
-      // socket?.emit(SocketEvents.MOVE_PIECE, { from: move.from, to: move.to });
-      // ws.emitter('MOVE_PIECE', { from: move.from, to: move.to });
+      socket?.emit(SocketEvents.MOVE_PIECE, { from: move.from, to: move.to });
     }
   }
 
@@ -84,16 +99,11 @@ export function ChessGame(props: {}) {
 
     if (move === null) return false;
 
-    ws.emitter('MOVE_PIECE', {
+    socket!.emit('MOVE_PIECE', {
       from: move.from,
       to: move.to,
       userAddress: address,
     });
-    // socket!.emit('MOVE_PIECE', {
-    //   from: move.from,
-    //   to: move.to,
-    //   userAddress: address,
-    // });
 
     setGame(game);
 
@@ -123,43 +133,18 @@ export function ChessGame(props: {}) {
     if (isGameStarted) return;
 
     setGameStarted(true);
-    // setInterval(() => {
-    //   setCounter((prev) => {
-    //     return prev + 1;
-    //   });
-    // }, 1000);
-
-    // Function to update the countdown timer
-    function updateCountdown() {
-      //  const countdownElement = document.getElementById('countdown');
-      //  countdownElement.textContent = formatTime(timeLeft);
+    setInterval(() => {
       setCounter((prev) => {
-        return prev--;
+        return prev + 1;
       });
-      //  timeLeft--;
-
-      if (timeLeft >= 0) {
-        setTimeout(updateCountdown, 1000);
-        //  } else {
-        //    countdownElement.textContent = "Time's up!";
-      }
-    }
-
-    // Start the countdown
-    updateCountdown();
-  }
-
-  function formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }, 1000);
   }
 
   return (
     <>
       <div className="px-6 mt-[50px]">
         <div className="w-full flex items-center justify-between py-2">
-          <TextP v="p3">{formatTime(timeLeft)}</TextP>
+          <TextP v="p3">{counter}</TextP>
 
           {/* <AppButton className="w-fit py-[1px]" onClick={() => {}}>
             Stop
