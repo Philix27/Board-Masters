@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "deploy": "source .env && forge create --rpc-url $RPC_URL --private-key $PRIVATE_KEY src/Counter.sol:Counter"
+    "deploy": "source .env && forge create --rpc-url $RPC_URL --private-key $PRIVATE_KEY src/Counter.sol:Counter",
+    "dep": "source .env && forge create --rpc-url $RPC_URL --constructor-args $CONSTRUCTOR --private-key $PRIVATE_KEY src/main.sol:BoardMasters"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2"
