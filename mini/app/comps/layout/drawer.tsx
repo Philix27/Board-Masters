@@ -11,6 +11,10 @@ import { GoPerson } from 'react-icons/go';
 import { IoColorPaletteOutline } from 'react-icons/io5';
 import { PiSpeakerHighThin, PiSpeakerSimpleXLight } from 'react-icons/pi';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { FaServicestack } from 'react-icons/fa';
+import { MdOutlinePrivacyTip } from 'react-icons/md';
+import { RiQuestionAnswerLine } from 'react-icons/ri';
+import { BiMessage } from 'react-icons/bi';
 
 export function Drawer() {
   const store = AppStores.useSettingsStore();
@@ -66,26 +70,26 @@ function HomeDrawer(props: { router: AppRouterInstance }) {
       />
       <DrawerRow
         title={'Contact Us'}
-        icon={IoIosNotificationsOutline}
+        icon={BiMessage}
         onClick={() => {
           router.push('/notify');
         }}
       />
       <DrawerRow
         title={'Faq'}
-        icon={IoColorPaletteOutline}
+        icon={RiQuestionAnswerLine}
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       />
       <DrawerRow
         title={'Privacy'}
-        icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
+        icon={MdOutlinePrivacyTip}
         onClick={() => {
           router.push('/notify');
         }}
       />
       <DrawerRow
         title={'Terms of service'}
-        icon={store.isLoud ? PiSpeakerHighThin : PiSpeakerSimpleXLight}
+        icon={FaServicestack}
         onClick={() => {
           router.push('/notify');
         }}
