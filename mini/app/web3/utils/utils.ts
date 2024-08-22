@@ -1,7 +1,5 @@
 import { BrowserProvider, Contract } from 'ethers';
-import { AppContract, getContractAddress } from '../const';
-
-// import { AppContract, getContractAddress } from "./const"
+import { AppContract } from '../const';
 
 export async function getUserAddress() {
   if (window.ethereum) {
@@ -17,7 +15,7 @@ export async function geAppContract(userAddress: string) {
   const provider = new BrowserProvider(window.ethereum);
   const signer = await provider.getSigner(userAddress);
 
-  return new Contract(getContractAddress(), AppContract.abi, signer);
+  return new Contract(AppContract.address, AppContract.abi, signer);
 }
 
 export async function geSigner(userAddress: string) {
