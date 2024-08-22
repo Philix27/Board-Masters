@@ -90,6 +90,11 @@ function HomeDrawer(props: { router: AppRouterInstance }) {
           router.push('/notify');
         }}
       />
+      <DrawerRow
+        title={'Theme'}
+        icon={IoColorPaletteOutline}
+        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      />
     </div>
   );
 }
