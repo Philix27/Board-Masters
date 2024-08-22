@@ -43,9 +43,7 @@ export function HomeSection() {
       </div>
       <JumbutronSection
         title={'Fun time'}
-        subtitle="
-          Lorem Ipsum available but the 
-          majority have suffered alteration in some form."
+        subtitle="Play chess and have fun with friends and top chess master."
       />
 
       <CardsSection data={cardData} />
