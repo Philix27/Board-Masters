@@ -18,10 +18,32 @@ const SocketEvents = {
 export function roomHandler(
   socket: Socket,
   gameService: AppRepository,
-  board: Chess
+  chess: Chess
 ) {
+  function makeAMove(
+    move:
+      | string
+      | {
+          from: string;
+          to: string;
+          promotion?: string;
+        }
+  ) {
+    // const gameCopy = chess;
+    let result = null;
+
+    try {
+      result = chess.move(move);
+    } catch (e) {
+      result = null;
+    }
+    // setGame(gameCopy);
+
+    return result;
+  }
+
   socket.on(SocketEvents.JOIN_ROOM, async (userAddress: string) => {
-    console.log("SocketEvents.CREATE_ROOM");
+    console.log("User join JOIN_ROOM", userAddress);
     try {
       const res = await gameService.createGame({
         userId: userAddress,
@@ -37,26 +59,35 @@ export function roomHandler(
     async (payload: {
       from: string;
       to: string;
-      playerId: string;
+      userAddress: string;
       gameId: string;
     }) => {
-      console.log("SocketEvents.MOVE_PIECE", payload);
-      socket.emit("message", {
+      console.log(SocketEvents.MOVE_PIECE, payload);
+      let move = makeAMove({
         from: payload.from,
         to: payload.to,
+        promotion: "q",
       });
-      try {
-        const res = await gameService.makeMove({
-          playerId: payload.playerId,
-          gameId: payload.gameId,
-          from: payload.from,
-          to: payload.to,
-        });
 
-        socket.to(payload.gameId).emit(SocketEvents.MOVE_PIECE, {
+      if (move) {
+        socket.emit(SocketEvents.MOVE_PIECE, {
           from: payload.from,
           to: payload.to,
+          userAddress: payload.userAddress,
         });
+      }
+
+      try {
+        // const res = await gameService.makeMove({
+        //   playerId: payload.playerId,
+        //   gameId: payload.gameId,
+        //   from: payload.from,
+        //   to: payload.to,
+        // });
+        // socket.to(payload.gameId).emit(SocketEvents.MOVE_PIECE, {
+        //   from: payload.from,
+        //   to: payload.to,
+        // });
       } catch (error) {
         console.error("Oops an err ocurred", error);
       }

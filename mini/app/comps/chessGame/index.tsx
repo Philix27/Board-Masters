@@ -6,28 +6,25 @@ import { Chessboard } from 'react-chessboard';
 import { TextP, Tabs } from '@/comps';
 import React from 'react';
 import { Piece } from 'react-chessboard/dist/chessboard/types';
-import { AppStores, useSocket } from '@/lib';
+import { AppStores } from '@/lib';
 import { BoardMoves, IBoardMoves } from './Moves';
 import { useAccount } from 'wagmi';
+import { useSocket } from './useSocket';
 
 export function ChessGame(props: {}) {
-  const [game, setGame] = useState(new Chess());
+  // const [game, setGame] = useState(new Chess());
   const { address } = useAccount();
   const [gameMoves, setGameMoves] = useState<IBoardMoves[]>([]);
   const [timeLeft, setCounter] = useState(10 * 60);
   const [isGameStarted, setGameStarted] = useState(false);
   const store = AppStores.useSettingsStore();
 
-  const ws = useSocket();
+  const { socket, emitter, chessState, setChessState } = useSocket();
 
   // useEffect(() => {
-  //   if (ws.socket) {
-  //     const socket = ws.socket! as any;
-  //     socket.onmessage = function (event: { data: any }) {
-  //       const message = JSON.parse(event.data);
-  //       console.log('In app message', message);
-  //     };
-  //   }
+  //   // if (socket) {
+  //   quickEmitter('JOIN_ROOM', { address });
+  //   // }
   // }, []);
 
   function makeAMove(
@@ -39,40 +36,40 @@ export function ChessGame(props: {}) {
           promotion?: string;
         }
   ) {
-    const gameCopy = game;
+    // const gameCopy = game;
     let result = null;
 
     try {
-      result = gameCopy.move(move);
+      result = chessState.move(move);
+      setChessState(chessState);
     } catch (e) {
       result = null;
     }
-    setGame(gameCopy);
 
     return result;
   }
 
-  function makeRandomMove() {
-    const possibleMoves = game.moves();
-    if (game.isGameOver() || game.isDraw() || possibleMoves.length === 0) return; // exit if the game is over
-    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-    const move = makeAMove(possibleMoves[randomIndex]!);
-    if (move) {
-      setGameMoves((prev) => {
-        return [
-          ...prev,
-          {
-            piece: `${move.color}${move.piece.toUpperCase()}` as Piece,
-            from: move.from,
-            to: move.to,
-          },
-        ];
-      });
+  // function makeRandomMove() {
+  //   const possibleMoves = game.moves();
+  //   if (game.isGameOver() || game.isDraw() || possibleMoves.length === 0) return; // exit if the game is over
+  //   const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+  //   const move = makeAMove(possibleMoves[randomIndex]!);
+  //   if (move) {
+  //     setGameMoves((prev) => {
+  //       return [
+  //         ...prev,
+  //         {
+  //           piece: `${move.color}${move.piece.toUpperCase()}` as Piece,
+  //           from: move.from,
+  //           to: move.to,
+  //         },
+  //       ];
+  //     });
 
-      // socket?.emit(SocketEvents.MOVE_PIECE, { from: move.from, to: move.to });
-      // ws.emitter('MOVE_PIECE', { from: move.from, to: move.to });
-    }
-  }
+  //     // socket?.emit(SocketEvents.MOVE_PIECE, { from: move.from, to: move.to });
+  //     // ws.emitter('MOVE_PIECE', { from: move.from, to: move.to });
+  //   }
+  // }
 
   function onDrop(sourceSquare: Square, targetSquare: Square, piece: Piece) {
     console.log('onDrop called ');
@@ -84,24 +81,19 @@ export function ChessGame(props: {}) {
 
     if (move === null) return false;
 
-    ws.emitter('MOVE_PIECE', {
+    emitter.MOVE_PIECE({
       from: move.from,
       to: move.to,
-      userAddress: address,
+      userAddress: address!,
     });
-    // socket!.emit('MOVE_PIECE', {
-    //   from: move.from,
-    //   to: move.to,
-    //   userAddress: address,
-    // });
 
-    setGame(game);
+    // setChessState(chessState);
 
     trackMoves(move, piece);
 
     startCounter();
 
-    setTimeout(makeRandomMove, 200);
+    // setTimeout(makeRandomMove, 200);
 
     return true;
   }
@@ -169,7 +161,7 @@ export function ChessGame(props: {}) {
           id={'BasicBoard'}
           allowDragOutsideBoard={false}
           arePiecesDraggable={true}
-          position={game.fen()}
+          position={chessState.fen()}
           onPieceDrop={onDrop}
           showBoardNotation={true}
           customBoardStyle={{ borderRadius: '5px', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)' }}
