@@ -15,7 +15,7 @@ export function DashboardItems(props: { data: IDashboard[] }) {
               key={i}
               className={cn(`px-3 py-2 rounded-md bg-card border-[0.1px] flex flex-col items-center justify-center`)}
             >
-              <TextH className={'tracking-wide text-card-foreground my-1'}>{val.title}</TextH>
+              <TextH className={'tracking-wide text-card-foreground my-1 text-sm'}>{val.title}</TextH>
               <hr className="border-[0.1px] border-primary w-full" />
               <TextP className="mb-4 text-slate-500 text-sm text-center my-2">{val.subTitle}</TextP>
               <Icon size={40} className="mb-2 text-primary" />
