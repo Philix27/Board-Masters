@@ -5,6 +5,7 @@ import { TextH, Navbar, ChessGame, ModalWrapper, AppButton, Spinner, TextP } fro
 import { useRouter } from 'next/navigation';
 import { ContractFn, ContractReads } from '@/web3';
 import { useAccount } from 'wagmi';
+import { toast } from 'sonner';
 
 export default function PlayNowPage() {
   const [waitingPlayer, setWaitingPlayer] = useState<'NONE' | 'WAIT' | 'NOTE'>('NONE');
@@ -33,13 +34,14 @@ export default function PlayNowPage() {
               <AppButton
                 className="w-[40%]"
                 onClick={async () => {
-                  await ContractFn.joinGame({
-                    userAddress: address!,
-                    stakeAmount: 2,
-                  });
-
-                  setWaitingPlayer('WAIT');
-                  console.log("After waiting state")
+                  try {
+                    await ContractFn.joinGame({
+                      userAddress: address!,
+                      stakeAmount: 2,
+                    });
+                    setWaitingPlayer('WAIT');
+                    toast.success('Staked successfully');
+                  } catch (error) {}
                 }}
               >
                 Next
@@ -52,7 +54,8 @@ export default function PlayNowPage() {
         <ModalWrapper>
           <div>
             <TextH className="mb-2">Waiting for a second player to join</TextH>
-            <div className="w-full flex justify-center my-5">
+            <TextP className="mb-2">You have already staked $2</TextP>
+            <div className="w-full flex justify-center my-4">
               <Spinner />
             </div>
             <div className="w-full flex justify-center">
