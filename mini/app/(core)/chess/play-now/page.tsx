@@ -3,10 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { TextH, Navbar, ChessGame, ModalWrapper, AppButton, Spinner, TextP } from '@/comps';
 import { useRouter } from 'next/navigation';
+import { ContractFn, ContractReads } from '@/web3';
+import { useAccount } from 'wagmi';
 
 export default function PlayNowPage() {
   const [waitingPlayer, setWaitingPlayer] = useState<'NONE' | 'WAIT' | 'NOTE'>('NONE');
   const router = useRouter();
+  ContractReads.useGetBalance(0);
+  const { address } = useAccount();
 
   useEffect(() => {
     setWaitingPlayer('NOTE');
@@ -21,12 +25,21 @@ export default function PlayNowPage() {
         <ModalWrapper>
           <div>
             <TextH className="mb-2">Note</TextH>
-            <TextP className="mb-2">You need to stake $5 to participate in this game.</TextP>
+            <TextP className="mb-2">You need to stake $2 to participate in this game.</TextP>
             <div className="w-full flex items-center justify-around">
               <AppButton variant={'outline'} className="w-[40%]" onClick={() => router.back()}>
                 Cancel
               </AppButton>
-              <AppButton className="w-[40%]" onClick={() => setWaitingPlayer('WAIT')}>
+              <AppButton
+                className="w-[40%]"
+                onClick={async () => {
+                  await ContractFn.joinGame({
+                    userAddress: address!,
+                    stakeAmount: 2,
+                  });
+                  setWaitingPlayer('WAIT');
+                }}
+              >
                 Next
               </AppButton>
             </div>
