@@ -1,4 +1,4 @@
-import * as Contract from './FN';
+import * as Contract from './fn';
 import * as Utils from './utils';
 export * from '../const/env';
 export * from './useMinipay';

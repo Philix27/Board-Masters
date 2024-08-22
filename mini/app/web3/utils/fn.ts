@@ -49,7 +49,7 @@ export async function joinGame(props: { userAddress: string; stakeAmount: number
   const tokenContract = new ethers.Contract(TokenAddress.CUSD_MAINNET, TokenAddress.erc20Abi, signer);
   // const recipient = to
   const tokenAmount = ethers.parseUnits(props.stakeAmount.toString(), 18);
-  console.log('In fn deposit', props);
+  console.log('In fn joinGame', props);
 
   try {
     const tx = await tokenContract.approve!(AppContract.address, tokenAmount);

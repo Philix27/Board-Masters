@@ -37,7 +37,9 @@ export default function PlayNowPage() {
                     userAddress: address!,
                     stakeAmount: 2,
                   });
+
                   setWaitingPlayer('WAIT');
+                  console.log("After waiting state")
                 }}
               >
                 Next
