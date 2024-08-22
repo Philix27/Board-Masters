@@ -18,8 +18,9 @@ export function HomeSection() {
     <div className={'flex flex-col items-center justify-center'}>
       <HeroWithImg img={'/piece.png'}>
         <TextH v="h1" className={'text-[24px] font-extrabold md:text-[50px] text-card-foreground'}>
-          <span className="text-primary tracking-wide"> Chess </span> and
-          <span className="text-primary tracking-wide"> Checkers</span>
+          <span className="text-primary tracking-wide"> Board Masters </span> 
+          {/* <span className="text-primary tracking-wide"> Chess </span> and
+          <span className="text-primary tracking-wide"> Checkers</span> */}
         </TextH>
       </HeroWithImg>
       <div className="md:hidden my-5 flex flex-col items-center justify-center">
